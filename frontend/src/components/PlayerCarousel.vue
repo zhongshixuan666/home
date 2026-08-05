@@ -19,6 +19,9 @@ function prev() {
 
 function start() {
   stop()
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return
+  }
   timer = setInterval(next, 4500)
 }
 

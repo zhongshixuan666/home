@@ -90,7 +90,7 @@ const care = [
         </div>
         <div class="product-grid">
           <div v-for="p in products" :key="p.name" class="product-card card">
-            <img :src="p.image" :alt="p.name" />
+            <img :src="p.image" :alt="p.name" loading="lazy" />
             <div class="product-body">
               <p class="tag">{{ p.tag }}</p>
               <h3>{{ p.name }}</h3>

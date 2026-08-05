@@ -120,9 +120,9 @@ const quotes = [
           <div class="player-head">
             <PlayerCarousel :images="p.gallery" :alt="p.name" />
             <div class="player-profile">
-              <p class="eyebrow">{{ p.country }}</p>
               <h2>{{ p.name }}<span class="player-en">{{ p.en }}</span></h2>
               <ul class="player-facts">
+                <li><span>协会</span>{{ p.country }}</li>
                 <li><span>出生日期</span>{{ p.birth }}</li>
                 <li><span>身高</span>{{ p.height }}</li>
                 <li><span>技术特点</span>{{ p.style }}</li>
@@ -205,7 +205,7 @@ const quotes = [
         <div class="quotes-grid">
           <div v-for="q in quotes" :key="q.author" class="quote-card">
             <p class="quote-text">“{{ q.text }}”</p>
-            <p class="quote-author">—— {{ q.author }}</p>
+            <p class="quote-author">{{ q.author }}</p>
           </div>
         </div>
       </div>
@@ -218,15 +218,15 @@ const quotes = [
         </div>
         <div class="more-grid">
           <div class="more-card card">
-            <img :src="IMG.li1" alt="李美秒" />
+            <img :src="IMG.li1" alt="李美秒" loading="lazy" />
             <p>李美秒 · 中国</p>
           </div>
           <div class="more-card card">
-            <img :src="IMG.axelsen" alt="安赛龙" />
+            <img :src="IMG.axelsen" alt="安赛龙" loading="lazy" />
             <p>安赛龙 · 丹麦</p>
           </div>
           <div class="more-card card">
-            <img :src="IMG.leeZijia" alt="李梓嘉" />
+            <img :src="IMG.leeZijia" alt="李梓嘉" loading="lazy" />
             <p>李梓嘉 · 马来西亚</p>
           </div>
         </div>

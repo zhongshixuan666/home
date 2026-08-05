@@ -117,7 +117,7 @@ const filtered = () =>
 
         <div class="news-grid">
           <article v-for="a in filtered()" :key="a.title" class="news-card card">
-            <img :src="a.image" :alt="a.title" />
+            <img :src="a.image" :alt="a.title" loading="lazy" />
             <div class="news-body">
               <div class="news-meta">
                 <span class="tag">{{ a.category }}</span>
@@ -163,7 +163,7 @@ const filtered = () =>
         </div>
         <div class="reco-grid">
           <article v-for="r in recommends" :key="r.title" class="reco-card">
-            <img :src="r.image" :alt="r.title" />
+            <img :src="r.image" :alt="r.title" loading="lazy" />
             <div class="reco-body">
               <div class="reco-meta">
                 <span class="tag">{{ r.category }}</span>
@@ -179,7 +179,7 @@ const filtered = () =>
     <section class="quote-band">
       <div class="container">
         <p class="quote-text">“资讯的价值，不在于追逐热点，而在于让每一篇报道都经得起时间的检验。”</p>
-        <p class="quote-author">—— 羽界编辑部</p>
+        <p class="quote-author">羽界编辑部</p>
       </div>
     </section>
   </div>
@@ -250,7 +250,7 @@ const filtered = () =>
 }
 
 .filter-btn.active {
-  color: #ffffff;
+  color: var(--paper);
   background: var(--gold);
   border-color: var(--gold);
 }

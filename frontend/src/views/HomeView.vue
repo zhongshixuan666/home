@@ -95,7 +95,7 @@ const matches = [
         </div>
         <div class="news-grid">
           <RouterLink v-for="n in news" :key="n.title" to="/news" class="news-card card">
-            <img :src="n.image" :alt="n.title" />
+            <img :src="n.image" :alt="n.title" loading="lazy" />
             <div class="news-body">
               <div class="news-meta">
                 <span class="tag">{{ n.category }}</span>
@@ -116,17 +116,17 @@ const matches = [
         </div>
         <div class="people-grid">
           <RouterLink to="/players" class="person-card">
-            <img :src="IMG.axelsen" alt="安赛龙" />
+            <img :src="IMG.axelsen" alt="安赛龙" loading="lazy" />
             <div class="person-info">
-              <p class="eyebrow">Denmark · Men's Singles</p>
+              <p class="person-meta">丹麦 · 男单</p>
               <h3>安赛龙</h3>
               <p class="person-note">两届奥运金牌得主，男单统治力标杆。</p>
             </div>
           </RouterLink>
           <RouterLink to="/players" class="person-card">
-            <img :src="IMG.leeZijia" alt="李梓嘉" />
+            <img :src="IMG.leeZijia" alt="李梓嘉" loading="lazy" />
             <div class="person-info">
-              <p class="eyebrow">Malaysia · Men's Singles</p>
+              <p class="person-meta">马来西亚 · 男单</p>
               <h3>李梓嘉</h3>
               <p class="person-note">全英冠军，暴力进攻派的代表人物。</p>
             </div>
@@ -158,10 +158,12 @@ const matches = [
           <h2 class="section-title">栏目纵览</h2>
         </div>
         <div class="columns-grid">
-          <div v-for="c in columns" :key="c.num" class="column-card">
-            <p class="column-num">{{ c.num }}</p>
-            <h3>{{ c.title }}</h3>
-            <p>{{ c.desc }}</p>
+          <div v-for="c in columns" :key="c.num" class="column-row">
+            <span class="column-num">{{ c.num }}</span>
+            <div class="column-body">
+              <h3>{{ c.title }}</h3>
+              <p>{{ c.desc }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -174,7 +176,7 @@ const matches = [
           <RouterLink to="/gear" class="section-more">进入装备区 →</RouterLink>
         </div>
         <div class="gear-feature">
-          <img :src="IMG.gear1" alt="装备精选" />
+          <img :src="IMG.gear1" alt="装备精选" loading="lazy" />
           <div class="gear-text">
             <p class="eyebrow">Gear & Equipment</p>
             <h3>从球拍到拍线，为每一次挥拍负责</h3>
@@ -343,6 +345,13 @@ const matches = [
   letter-spacing: 0.16em;
 }
 
+.person-meta {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
 .person-note {
   margin-top: 10px;
   font-size: 14px;
@@ -389,39 +398,40 @@ const matches = [
 }
 
 .columns-grid {
+  border-top: 1px solid var(--line);
+}
+
+.column-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: 120px 1fr;
+  gap: 32px;
+  padding: 34px 8px;
+  border-bottom: 1px solid var(--line);
 }
 
-.column-card {
-  padding: 36px 28px;
-  border: 1px solid var(--line);
-  background: #ffffff;
-}
-
-.column-card:hover {
-  border-color: var(--gold);
+.column-row:hover {
+  background: var(--bg-soft);
 }
 
 .column-num {
   font-family: var(--serif);
-  font-size: 26px;
+  font-size: 22px;
   color: var(--gold);
+  letter-spacing: 0.12em;
 }
 
-.column-card h3 {
-  margin-top: 18px;
+.column-body h3 {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 22px;
   color: var(--paper);
   letter-spacing: 0.1em;
 }
 
-.column-card p:not(.column-num) {
-  margin-top: 12px;
-  font-size: 13px;
+.column-body p {
+  margin-top: 8px;
+  font-size: 14px;
   color: var(--muted);
+  max-width: 72ch;
 }
 
 .gear-feature {
