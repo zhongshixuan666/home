@@ -1,0 +1,200 @@
+/* ===== 羽界 · 全局设计体系（白色系 · 无圆角 · 高级感） ===== */
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f7f6f2;
+  --ink-2: #fbfaf7;
+  --ink-3: #f4f2ec;
+  --line: #e7e3da;
+  --gold: #b08a45;
+  --gold-soft: #c9a868;
+  --paper: #1c1b18;
+  --text: #403e38;
+  --muted: #8c887e;
+
+  --serif: 'Songti SC', 'STSong', 'Noto Serif SC', 'SimSun', Georgia, serif;
+  --sans: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: #ffffff;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.hairline {
+  width: 56px;
+  height: 1px;
+  background: var(--gold);
+  margin: 24px 0 32px;
+}
+
+.page-head {
+  padding: 88px 0 48px;
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.page-head h1 {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: 0.12em;
+}
+
+.page-head p {
+  max-width: 680px;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.section {
+  padding: 84px 0;
+}
+
+.section-alt {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 44px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: 0.1em;
+}
+
+.section-more {
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 38px;
+  border: 1px solid var(--gold);
+  color: var(--paper);
+  background: transparent;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+}
+
+.btn:hover {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+.btn-solid {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+.btn-solid:hover {
+  background: var(--gold-soft);
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 12px;
+  border: 1px solid var(--line);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  background: #ffffff;
+}
+
+.card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+}
+
+.card:hover {
+  border-color: var(--gold);
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table-wrap th,
+.table-wrap td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.table-wrap th {
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  background: var(--bg-soft);
+}
+
+.table-wrap td {
+  color: var(--text);
+}

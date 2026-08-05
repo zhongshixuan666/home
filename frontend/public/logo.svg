@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" role="img" aria-label="羽界 logo">
+  <defs>
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8d3a2"/>
+      <stop offset="0.45" stop-color="#c5a468"/>
+      <stop offset="1" stop-color="#8f6b33"/>
+    </linearGradient>
+    <linearGradient id="softGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2e6c8"/>
+      <stop offset="1" stop-color="#b99654"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="none" stroke="url(#goldGrad)">
+    <circle cx="80" cy="80" r="62" stroke-width="1.8"/>
+    <circle cx="80" cy="80" r="52" stroke-width="0.8" opacity="0.5"/>
+  </g>
+
+  <circle cx="80" cy="102" r="11" fill="url(#softGold)"/>
+  <g stroke="url(#softGold)" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M80 92 L58 58"/>
+    <path d="M80 92 L80 52"/>
+    <path d="M80 92 L102 58"/>
+  </g>
+
+  <text x="168" y="80" font-family="'Songti SC','STSong','SimSun',serif" font-size="56" fill="#1c1b18" letter-spacing="12">羽界</text>
+  <text x="170" y="114" font-family="'Helvetica Neue',Arial,sans-serif" font-size="12" fill="url(#goldGrad)" letter-spacing="7">YUJIE · BADMINTON</text>
+</svg>
