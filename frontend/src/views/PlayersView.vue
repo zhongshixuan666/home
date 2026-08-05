@@ -291,7 +291,7 @@ const { loading } = useFakeLoad(700)
               <h3>高光视频</h3>
               <span>{{ p.name }} · 赛场片段</span>
             </div>
-            <video :src="p.video" :poster="p.gallery[0]" controls preload="metadata"></video>
+            <video :src="p.video" :poster="p.gallery[0]" controls preload="none" playsinline></video>
           </div>
         </div>
       </section>

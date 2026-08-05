@@ -4,13 +4,13 @@ import SkeletonLoader from '../components/SkeletonLoader.vue'
 import { useFakeLoad } from '../composables/useFakeLoad'
 
 const IMG = {
-  heroMain: media('media/imges/hero-main.jpg'),
-  heroBanner: media('media/imges/hero-banner.jpg'),
+  heroMain: media('media/imges/hero-main.webp'),
+  heroBanner: media('media/imges/hero-banner.webp'),
   axelsen: media('media/imges/an-sai-long.jpg'),
   leeZijia: media('media/imges/li-zi-jia.jpg'),
   gear1: media('media/imges/gear-1.jpg'),
   li1: media('media/imges/li-meimiao-2.jpg'),
-  product3: media('media/imges/product-3.png'),
+  product3: media('media/imges/product-3.webp'),
 }
 
 const stats = [

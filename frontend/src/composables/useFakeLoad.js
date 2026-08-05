@@ -1,20 +1,8 @@
-﻿import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
-// 模拟异步数据加载，用于演示骨架屏。
-// 接入真实接口时，把 setTimeout 替换为实际请求即可（loading 语义不变）。
-export function useFakeLoad(delay = 650) {
-  const loading = ref(true)
-  let timer = null
-
-  onMounted(() => {
-    timer = setTimeout(() => {
-      loading.value = false
-    }, delay)
-  })
-
-  onBeforeUnmount(() => {
-    if (timer) clearTimeout(timer)
-  })
-
+// 页面内容为静态演示数据，不主动制造额外加载延迟。
+// 接入真实接口时再改为根据请求状态控制 loading。
+export function useFakeLoad() {
+  const loading = ref(false)
   return { loading }
 }

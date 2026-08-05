@@ -11,8 +11,8 @@ const IMG = {
   leeZijia: media('media/imges/li-zi-jia.jpg'),
   gear1: media('media/imges/gear-1.jpg'),
   gear2: media('media/imges/gear-2.jpg'),
-  product3: media('media/imges/product-3.png'),
-  banner: media('media/imges/hero-banner.jpg'),
+  product3: media('media/imges/product-3.webp'),
+  banner: media('media/imges/hero-banner.webp'),
 }
 
 const categories = ['全部', '赛事', '人物', '装备', '深度']

@@ -11,12 +11,12 @@ const VID = {
 }
 
 const IMG = {
-  banner: media('media/imges/hero-banner.jpg'),
+  banner: media('media/imges/hero-banner.webp'),
   gear1: media('media/imges/gear-1.jpg'),
   gear2: media('media/imges/gear-2.jpg'),
   product1: media('media/imges/product-1.jpeg'),
   product2: media('media/imges/product-2.jpeg'),
-  product3: media('media/imges/product-3.png'),
+  product3: media('media/imges/product-3.webp'),
 }
 
 const products = [
@@ -69,7 +69,7 @@ const { loading } = useFakeLoad(700)
         <SkeletonLoader v-if="loading" variant="grid" :count="2" :cols="2" :img-height="340" />
         <div v-else class="video-grid">
           <figure v-for="v in videos" :key="v.title" class="video-card micro-card">
-            <video :src="v.src" :poster="v.poster" controls preload="metadata"></video>
+            <video :src="v.src" :poster="v.poster" controls preload="none" playsinline></video>
             <figcaption>
               <h3>{{ v.title }}</h3>
               <p>实拍素材 · 来自羽界装备实验室</p>
