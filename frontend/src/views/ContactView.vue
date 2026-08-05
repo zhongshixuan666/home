@@ -83,7 +83,7 @@ const faqs = [
           <h2 class="section-title">合作流程</h2>
         </div>
         <div class="steps-grid">
-          <div v-for="s in steps" :key="s.num" class="step">
+          <div v-for="s in steps" :key="s.num" class="step micro-card">
             <p class="step-num">{{ s.num }}</p>
             <h3>{{ s.title }}</h3>
             <p>{{ s.desc }}</p>
@@ -183,7 +183,7 @@ const faqs = [
           <h2 class="section-title">常见问题</h2>
         </div>
         <div class="faq">
-          <div v-for="f in faqs" :key="f.q" class="faq-item">
+          <div v-for="f in faqs" :key="f.q" class="faq-item micro-card">
             <h3>{{ f.q }}</h3>
             <p>{{ f.a }}</p>
           </div>
@@ -203,11 +203,11 @@ const faqs = [
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 .step {
-  padding: 36px 30px;
+  padding: 44px 34px;
   border: 1px solid var(--line);
   background: #ffffff;
 }
@@ -235,7 +235,7 @@ const faqs = [
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 72px;
+  gap: 80px;
 }
 
 .contact-info h2,
@@ -274,7 +274,7 @@ const faqs = [
 }
 
 .contact-form {
-  padding: 44px 44px 48px;
+  padding: 52px 48px 56px;
   border: 1px solid var(--line);
   background: #ffffff;
 }
@@ -338,11 +338,11 @@ const faqs = [
 .faq {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 26px;
+  gap: 32px;
 }
 
 .faq-item {
-  padding: 32px 28px;
+  padding: 40px 34px;
   border: 1px solid var(--line);
   background: #ffffff;
 }

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { media } from './media'
 
 const logo = media('logo.svg')
@@ -29,7 +29,11 @@ const navs = [
     </header>
 
     <main>
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <Transition name="page" mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </main>
 
     <footer class="footer">
@@ -60,7 +64,7 @@ const navs = [
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 76px;
+  height: 80px;
 }
 
 .brand {
@@ -76,7 +80,7 @@ const navs = [
 
 .nav {
   display: flex;
-  gap: 40px;
+  gap: 48px;
 }
 
 .nav-link {
@@ -84,18 +88,10 @@ const navs = [
   font-size: 14px;
   letter-spacing: 0.22em;
   color: var(--text);
-  padding: 8px 0;
+  padding: 10px 0;
 }
 
-.nav-link:hover {
-  color: var(--paper);
-}
-
-.nav-link.router-link-active {
-  color: var(--gold);
-}
-
-.nav-link.router-link-active::after {
+.nav-link::after {
   content: '';
   position: absolute;
   left: 0;
@@ -103,12 +99,28 @@ const navs = [
   bottom: 0;
   height: 1px;
   background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.nav-link:hover {
+  color: var(--paper);
+}
+
+.nav-link:hover::after,
+.nav-link.router-link-active::after {
+  transform: scaleX(1);
+}
+
+.nav-link.router-link-active {
+  color: var(--gold);
 }
 
 .footer {
   border-top: 1px solid var(--line);
   background: var(--bg-soft);
-  padding: 52px 0 40px;
+  padding: 72px 0 56px;
 }
 
 .footer-inner {
@@ -135,6 +147,10 @@ const navs = [
   gap: 26px;
   font-size: 13px;
   color: var(--text);
+}
+
+.footer-nav a {
+  transition: color 0.3s ease;
 }
 
 .footer-nav a:hover {

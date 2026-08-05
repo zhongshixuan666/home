@@ -1,13 +1,15 @@
 <script setup>
 import { media } from '../media'
+import SkeletonLoader from '../components/SkeletonLoader.vue'
+import { useFakeLoad } from '../composables/useFakeLoad'
 
 const IMG = {
   heroMain: media('media/imges/hero-main.jpg'),
   heroBanner: media('media/imges/hero-banner.jpg'),
-  axelsen: media('media/imges/axelsen-poster.jpg'),
-  leeZijia: media('media/imges/lee-zijia-poster.jpg'),
+  axelsen: media('media/imges/an-sai-long.jpg'),
+  leeZijia: media('media/imges/li-zi-jia.jpg'),
   gear1: media('media/imges/gear-1.jpg'),
-  li1: media('media/imges/li-meimiao-1.jpg'),
+  li1: media('media/imges/li-meimiao-2.jpg'),
   product3: media('media/imges/product-3.png'),
 }
 
@@ -53,10 +55,11 @@ const news = [
 ]
 
 const matches = [
-  { date: '08.15', event: '世界羽毛球锦标赛', place: '西班牙 · 马德里', note: '男单 1/4 决赛' },
-  { date: '09.02', event: '中国羽毛球公开赛', place: '中国 · 常州', note: '首轮对阵出炉' },
-  { date: '09.20', event: '日本羽毛球公开赛', place: '日本 · 大阪', note: '签表公布' },
+  { date: '08.17', event: '世界羽毛球锦标赛', place: '印度 · 新德里', note: '8月17-23日' },
+  { date: '09.01', event: '李宁·中国羽毛球大师赛', place: '中国 · 深圳', note: '超级750' },
+  { date: '09.06', event: '全国羽毛球单项锦标赛', place: '中国 · 合肥', note: '9月6-13日' },
 ]
+const { loading } = useFakeLoad(650)
 </script>
 
 <template>
@@ -73,7 +76,8 @@ const matches = [
       </div>
       <div class="container">
         <div class="hero-frame">
-          <img :src="IMG.heroMain" alt="羽毛球赛场" />
+          <SkeletonLoader v-if="loading" variant="hero" :img-height="520" />
+          <img v-else :src="IMG.heroMain" alt="羽毛球赛场" />
         </div>
       </div>
     </section>
@@ -93,8 +97,9 @@ const matches = [
           <h2 class="section-title">最新资讯</h2>
           <RouterLink to="/news" class="section-more">全部资讯 →</RouterLink>
         </div>
-        <div class="news-grid">
-          <RouterLink v-for="n in news" :key="n.title" to="/news" class="news-card card">
+        <SkeletonLoader v-if="loading" variant="grid" :count="4" :cols="4" />
+        <div v-else class="news-grid">
+          <RouterLink v-for="n in news" :key="n.title" to="/news" class="news-card card micro-card">
             <img :src="n.image" :alt="n.title" loading="lazy" />
             <div class="news-body">
               <div class="news-meta">
@@ -114,8 +119,9 @@ const matches = [
           <h2 class="section-title">焦点人物</h2>
           <RouterLink to="/players" class="section-more">全部球员 →</RouterLink>
         </div>
-        <div class="people-grid">
-          <RouterLink to="/players" class="person-card">
+        <SkeletonLoader v-if="loading" variant="grid" :count="2" :cols="2" :img-height="420" />
+        <div v-else class="people-grid">
+          <RouterLink to="/players" class="person-card micro-card">
             <img :src="IMG.axelsen" alt="安赛龙" loading="lazy" />
             <div class="person-info">
               <p class="person-meta">丹麦 · 男单</p>
@@ -123,7 +129,7 @@ const matches = [
               <p class="person-note">两届奥运金牌得主，男单统治力标杆。</p>
             </div>
           </RouterLink>
-          <RouterLink to="/players" class="person-card">
+          <RouterLink to="/players" class="person-card micro-card">
             <img :src="IMG.leeZijia" alt="李梓嘉" loading="lazy" />
             <div class="person-info">
               <p class="person-meta">马来西亚 · 男单</p>
@@ -141,7 +147,8 @@ const matches = [
           <h2 class="section-title">赛事速览</h2>
           <RouterLink to="/matches" class="section-more">全部比赛 →</RouterLink>
         </div>
-        <div class="match-grid">
+        <SkeletonLoader v-if="loading" variant="grid" :count="3" :cols="3" :img-height="0" />
+        <div v-else class="match-grid">
           <div v-for="m in matches" :key="m.event" class="match-card card">
             <p class="match-date">{{ m.date }}</p>
             <h3>{{ m.event }}</h3>
@@ -175,7 +182,7 @@ const matches = [
           <h2 class="section-title">装备精选</h2>
           <RouterLink to="/gear" class="section-more">进入装备区 →</RouterLink>
         </div>
-        <div class="gear-feature">
+        <div class="gear-feature micro-card">
           <img :src="IMG.gear1" alt="装备精选" loading="lazy" />
           <div class="gear-text">
             <p class="eyebrow">Gear & Equipment</p>
@@ -231,7 +238,7 @@ const matches = [
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 72px;
+  margin-bottom: 84px;
 }
 
 .hero-frame {
@@ -242,7 +249,7 @@ const matches = [
 
 .hero-frame img {
   width: 100%;
-  height: 520px;
+  height: 540px;
   object-fit: cover;
 }
 
@@ -257,7 +264,7 @@ const matches = [
 }
 
 .stat {
-  padding: 44px 24px;
+  padding: 52px 24px;
   text-align: center;
   border-right: 1px solid var(--line);
 }
@@ -282,7 +289,7 @@ const matches = [
 .news-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 32px;
 }
 
 .news-card img {
@@ -290,7 +297,7 @@ const matches = [
 }
 
 .news-body {
-  padding: 22px 24px 26px;
+  padding: 26px 28px 30px;
 }
 
 .news-meta {
@@ -316,7 +323,7 @@ const matches = [
 .people-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 36px;
 }
 
 .person-card {
@@ -335,7 +342,7 @@ const matches = [
 }
 
 .person-info {
-  padding: 28px 32px 32px;
+  padding: 32px 36px 36px;
 }
 
 .person-info h3 {
@@ -361,11 +368,11 @@ const matches = [
 .match-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 32px;
 }
 
 .match-card {
-  padding: 34px 30px;
+  padding: 40px 34px;
   background: #ffffff;
 }
 
@@ -405,7 +412,7 @@ const matches = [
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 32px;
-  padding: 34px 8px;
+  padding: 40px 8px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -448,7 +455,7 @@ const matches = [
 }
 
 .gear-text {
-  padding: 56px 48px;
+  padding: 64px 56px;
 }
 
 .gear-text h3 {
@@ -467,7 +474,7 @@ const matches = [
 }
 
 .subscribe {
-  padding: 96px 0;
+  padding: 112px 0;
   border-top: 1px solid var(--line);
   background: var(--bg-soft);
 }

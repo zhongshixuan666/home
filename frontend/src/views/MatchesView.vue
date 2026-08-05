@@ -1,29 +1,31 @@
 <script setup>
+import SkeletonLoader from '../components/SkeletonLoader.vue'
+import { useFakeLoad } from '../composables/useFakeLoad'
 const upcoming = [
-  { date: '08.15', time: '18:00', event: '世界羽毛球锦标赛', stage: '男单 1/4 决赛', venue: '西班牙 · 马德里', watch: '小组赛签表已出炉' },
-  { date: '09.02', time: '10:00', event: '中国羽毛球公开赛', stage: '正赛首轮', venue: '中国 · 常州', watch: '国羽全主力出战' },
-  { date: '09.20', time: '11:00', event: '日本羽毛球公开赛', stage: '正赛首轮', venue: '日本 · 大阪', watch: '种子名单公布' },
-  { date: '10.05', time: '15:00', event: '丹麦公开赛', stage: '正赛首轮', venue: '丹麦 · 欧登塞', watch: '欧洲赛季收官战' },
-  { date: '11.02', time: '13:00', event: '法国公开赛', stage: '正赛首轮', venue: '法国 · 巴黎', watch: '奥运场馆再迎大赛' },
-  { date: '12.14', time: '14:00', event: '世界羽联巡回赛总决赛', stage: '小组赛', venue: '中国 · 杭州', watch: '年终巅峰对决' },
+  { date: '08.04', time: '至 08.09', event: '韩国羽毛球大师赛', stage: '超级300 · 正赛', venue: '韩国 · 牙山', watch: '正在进行' },
+  { date: '08.17', time: '至 08.23', event: '世界羽毛球锦标赛', stage: '64强至决赛', venue: '印度 · 新德里', watch: '签表已出炉' },
+  { date: '08.29', time: '至 08.30', event: '全国羽毛球运动水平等级赛', stage: '浙江分站赛', venue: '中国 · 浙江', watch: '总决赛10月举行' },
+  { date: '09.01', time: '至 09.06', event: '李宁·中国羽毛球大师赛', stage: '超级750 · 正赛', venue: '中国 · 深圳', watch: '石宇奇、安洗莹领衔' },
+  { date: '09.06', time: '至 09.13', event: '全国羽毛球单项锦标赛', stage: '单项赛', venue: '中国 · 合肥', watch: '全国单项争冠' },
+  { date: '10.05', time: '至 10.06', event: '全国羽毛球运动水平等级赛', stage: '总决赛', venue: '中国', watch: '年度收官' },
 ]
 
 const results = [
-  { date: '2026.07.28', event: '全英公开赛 · 决赛', playerA: '安赛龙', playerB: '李梓嘉', score: '21:18 21:16', result: '安赛龙胜' },
-  { date: '2026.07.26', event: '全英公开赛 · 半决赛', playerA: '李梓嘉', playerB: '乔纳坦', score: '21:14 19:21 21:17', result: '李梓嘉胜' },
-  { date: '2026.07.20', event: '印尼公开赛 · 决赛', playerA: '安赛龙', playerB: '昆拉武特', score: '21:19 21:15', result: '安赛龙胜' },
-  { date: '2026.07.18', event: '印尼公开赛 · 半决赛', playerA: '李美秒', playerB: '山口茜', score: '21:17 18:21 21:19', result: '李美秒胜' },
-  { date: '2026.07.12', event: '马来西亚公开赛 · 决赛', playerA: '李梓嘉', playerB: '石宇奇', score: '21:16 22:20', result: '李梓嘉胜' },
-  { date: '2026.07.05', event: '新加坡公开赛 · 决赛', playerA: '安赛龙', playerB: '李美秒', score: '21:12 21:14', result: '安赛龙胜' },
+  { date: '2026.07.26', event: '中国公开赛 · 男单决赛', playerA: '周天成', playerB: '大波波夫', score: '21:15 7:21 21:13', result: '周天成胜' },
+  { date: '2026.07.26', event: '中国公开赛 · 女单决赛', playerA: '山口茜', playerB: '陈雨菲', score: '21:18 21:16', result: '山口茜胜' },
+  { date: '2026.07.26', event: '中国公开赛 · 男双决赛', playerA: '阿尔菲安/菲克里', playerB: '金元昊/徐承宰', score: '16:21 21:19 21:19', result: '阿尔菲安/菲克里胜' },
+  { date: '2026.07.26', event: '中国公开赛 · 女双决赛', playerA: '刘圣书/谭宁', playerB: '福岛由纪/松本麻佑', score: '21:14 21:19', result: '刘圣书/谭宁胜' },
+  { date: '2026.07.26', event: '中国公开赛 · 混双决赛', playerA: '郭新娃/陈芳卉', playerB: '冯彦哲/黄东萍', score: '25:23 20:22 21:15', result: '郭新娃/陈芳卉胜' },
+  { date: '2026.06.14', event: '澳大利亚公开赛 · 女单决赛', playerA: '山口茜', playerB: '李美妙', score: '22:20 21:18', result: '山口茜胜' },
 ]
 
 const champions = [
-  { year: '2026', event: '世界羽毛球锦标赛', champion: '待定 · 8 月揭晓' },
-  { year: '2026', event: '全英公开赛', champion: '安赛龙' },
-  { year: '2026', event: '印尼公开赛', champion: '安赛龙' },
-  { year: '2026', event: '马来西亚公开赛', champion: '李梓嘉' },
-  { year: '2025', event: '世界羽毛球锦标赛', champion: '安赛龙' },
-  { year: '2025', event: '世界羽联巡回赛总决赛', champion: '李梓嘉' },
+  { year: '2026', event: '中国羽毛球公开赛', champion: '周天成' },
+  { year: '2026', event: '亚洲羽毛球锦标赛', champion: '石宇奇' },
+  { year: '2026', event: '澳大利亚羽毛球公开赛', champion: '山口茜' },
+  { year: '2025', event: '世界羽毛球锦标赛', champion: '石宇奇' },
+  { year: '2024', event: '巴黎奥运会', champion: '安赛龙 / 安洗莹' },
+  { year: '2023', event: '世界羽毛球锦标赛', champion: '安洗莹' },
 ]
 
 const rules = [
@@ -32,6 +34,7 @@ const rules = [
   { title: '签表规则', desc: '种子选手按世界排名分配至各半区，同协会选手在早轮次原则上不相遇。' },
   { title: '观赛指南', desc: '欧洲赛事与北京时差 6–7 小时，美洲 12–13 小时，本页赛程均以北京时间标注。' },
 ]
+const { loading } = useFakeLoad(600)
 </script>
 
 <template>
@@ -49,7 +52,8 @@ const rules = [
         <div class="section-head">
           <h2 class="section-title">赛程预告</h2>
         </div>
-        <div class="schedule">
+        <SkeletonLoader v-if="loading" variant="list" :count="6" />
+        <div v-else class="schedule">
           <div v-for="m in upcoming" :key="m.event" class="schedule-row">
             <div class="sch-date">
               <p>{{ m.date }}</p>
@@ -153,9 +157,10 @@ const rules = [
   display: grid;
   grid-template-columns: 130px 1fr 200px;
   align-items: center;
-  gap: 28px;
-  padding: 26px 30px;
+  gap: 32px;
+  padding: 30px 34px;
   border-bottom: 1px solid var(--line);
+  transition: background 0.3s ease, padding-left 0.4s var(--ease-out);
 }
 
 .schedule-row:last-child {
@@ -164,6 +169,7 @@ const rules = [
 
 .schedule-row:hover {
   background: var(--bg-soft);
+  padding-left: 42px;
 }
 
 .sch-date p {
@@ -200,11 +206,11 @@ const rules = [
 .rules-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 .rule {
-  padding: 34px 30px;
+  padding: 40px 34px;
   background: #ffffff;
 }
 

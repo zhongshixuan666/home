@@ -38,8 +38,7 @@ function serveDesktopMedia() {
 
     fs.stat(file, (err, stat) => {
       if (err || !stat.isFile()) {
-        res.statusCode = 404
-        return res.end('Not found')
+        return next()
       }
       const ext = path.extname(file).toLowerCase()
       res.setHeader('Content-Type', MIME[ext] || 'application/octet-stream')

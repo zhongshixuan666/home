@@ -1,12 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 import { media } from '../media'
+import SkeletonLoader from '../components/SkeletonLoader.vue'
+import { useFakeLoad } from '../composables/useFakeLoad'
 
 const IMG = {
   li1: media('media/imges/li-meimiao-1.jpg'),
-  li3: media('media/imges/li-meimiao-3.jpg'),
-  axelsen: media('media/imges/axelsen-poster.jpg'),
-  leeZijia: media('media/imges/lee-zijia-poster.jpg'),
+  li2: media('media/imges/li-meimiao-2.jpg'),
+  axelsen: media('media/imges/an-sai-long.jpg'),
+  leeZijia: media('media/imges/li-zi-jia.jpg'),
   gear1: media('media/imges/gear-1.jpg'),
   gear2: media('media/imges/gear-2.jpg'),
   product3: media('media/imges/product-3.png'),
@@ -56,10 +58,10 @@ const articles = [
   },
   {
     category: '人物',
-    title: '李美秒：新生代女单的冷静与野心',
+    title: '李美妙：泰国女单的移动与线路艺术',
     date: '2026.07.05',
-    excerpt: '从青年赛到成年组，她用一场场比赛证明自己的名字值得被记住。',
-    image: IMG.li3,
+    excerpt: '从青年赛到世界女单前列，她用稳定与变化证明自己的名字值得被记住。',
+    image: IMG.li2,
   },
   {
     category: '深度',
@@ -74,11 +76,12 @@ const recommends = [
   { title: '球鞋选购的五个关键参数，大部分人都忽略了', date: '2026.07.18', image: IMG.gear2, category: '装备' },
   { title: '汤姆斯杯回顾：团体赛里的排兵布阵艺术', date: '2026.06.22', image: IMG.banner, category: '赛事' },
   { title: '训练笔记：多拍相持中的重心控制方法', date: '2026.06.15', image: IMG.axelsen, category: '深度' },
-  { title: '青年军崛起：近三年闯入前二十的新面孔', date: '2026.06.08', image: IMG.li3, category: '人物' },
+  { title: '青年军崛起：近三年闯入前二十的新面孔', date: '2026.06.08', image: IMG.li2, category: '人物' },
 ]
 
 const filtered = () =>
   active.value === '全部' ? articles : articles.filter((a) => a.category === active.value)
+const { loading } = useFakeLoad(650)
 </script>
 
 <template>
@@ -93,7 +96,9 @@ const filtered = () =>
 
     <section class="section">
       <div class="container">
-        <div class="featured card">
+        <SkeletonLoader v-if="loading" variant="page" :count="3" :cols="3" />
+        <template v-else>
+        <div class="featured card micro-card">
           <img :src="articles[0].image" alt="头条" />
           <div class="featured-body">
             <p class="tag">{{ articles[0].category }}</p>
@@ -116,7 +121,7 @@ const filtered = () =>
         </div>
 
         <div class="news-grid">
-          <article v-for="a in filtered()" :key="a.title" class="news-card card">
+          <article v-for="a in filtered()" :key="a.title" class="news-card card micro-card">
             <img :src="a.image" :alt="a.title" loading="lazy" />
             <div class="news-body">
               <div class="news-meta">
@@ -128,6 +133,7 @@ const filtered = () =>
             </div>
           </article>
         </div>
+        </template>
       </div>
     </section>
 
@@ -140,15 +146,15 @@ const filtered = () =>
           <span v-for="t in topics" :key="t" class="topic"># {{ t }}</span>
         </div>
         <div class="topic-stats">
-          <div class="topic-stat">
+          <div class="topic-stat micro-card">
             <p class="ts-num">1.8w</p>
             <p>全英公开赛相关讨论</p>
           </div>
-          <div class="topic-stat">
+          <div class="topic-stat micro-card">
             <p class="ts-num">9.6k</p>
             <p>安赛龙专栏阅读量</p>
           </div>
-          <div class="topic-stat">
+          <div class="topic-stat micro-card">
             <p class="ts-num">3.2k</p>
             <p>球拍横评收藏数</p>
           </div>
@@ -161,8 +167,9 @@ const filtered = () =>
         <div class="section-head">
           <h2 class="section-title">推荐阅读</h2>
         </div>
-        <div class="reco-grid">
-          <article v-for="r in recommends" :key="r.title" class="reco-card">
+        <SkeletonLoader v-if="loading" variant="grid" :count="4" :cols="4" />
+        <div v-else class="reco-grid">
+          <article v-for="r in recommends" :key="r.title" class="reco-card micro-card">
             <img :src="r.image" :alt="r.title" loading="lazy" />
             <div class="reco-body">
               <div class="reco-meta">
@@ -189,7 +196,7 @@ const filtered = () =>
 .featured {
   display: grid;
   grid-template-columns: 1.25fr 1fr;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
   background: #ffffff;
 }
 
@@ -200,7 +207,7 @@ const filtered = () =>
 }
 
 .featured-body {
-  padding: 52px 48px;
+  padding: 60px 56px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,7 +238,7 @@ const filtered = () =>
 .filters {
   display: flex;
   gap: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 44px;
 }
 
 .filter-btn {
@@ -258,7 +265,7 @@ const filtered = () =>
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 32px;
 }
 
 .news-card img {
@@ -266,7 +273,7 @@ const filtered = () =>
 }
 
 .news-body {
-  padding: 24px 26px 28px;
+  padding: 28px 30px 32px;
 }
 
 .news-meta {
@@ -319,11 +326,11 @@ const filtered = () =>
 .topic-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 .topic-stat {
-  padding: 36px 28px;
+  padding: 44px 32px;
   text-align: center;
   border: 1px solid var(--line);
   background: #ffffff;
@@ -344,7 +351,7 @@ const filtered = () =>
 .reco-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 32px;
 }
 
 .reco-card {
@@ -363,7 +370,7 @@ const filtered = () =>
 }
 
 .reco-body {
-  padding: 22px 24px 26px;
+  padding: 26px 28px 30px;
 }
 
 .reco-meta {
@@ -384,7 +391,7 @@ const filtered = () =>
 }
 
 .quote-band {
-  padding: 100px 0;
+  padding: 120px 0;
   background: var(--bg-soft);
   border-top: 1px solid var(--line);
   text-align: center;

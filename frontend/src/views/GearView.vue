@@ -1,11 +1,13 @@
 <script setup>
 import { media } from '../media'
+import SkeletonLoader from '../components/SkeletonLoader.vue'
+import { useFakeLoad } from '../composables/useFakeLoad'
 
 const VID = {
   promo1: media('media/video/promo-1-web.mp4'),
   promo2: media('media/video/promo-2-web.mp4'),
-  axelsen: media('media/video/axelsen-highlight-web.mp4'),
-  leeZijia: media('media/video/lee-zijia-highlight-web.mp4'),
+  axelsen: media('media/video/an-sai-long-web.mp4'),
+  leeZijia: media('media/video/li-zi-jia-web.mp4'),
 }
 
 const IMG = {
@@ -28,8 +30,8 @@ const products = [
 const videos = [
   { src: VID.promo1, title: '2026 春季系列宣传片', poster: IMG.banner },
   { src: VID.promo2, title: '实战测试：高弹拍线专项', poster: IMG.gear2 },
-  { src: VID.leeZijia, title: '安赛龙训练集锦：多拍稳定性', poster: media('media/imges/axelsen-poster.jpg') },
-  { src: VID.axelsen, title: '李梓嘉集锦：暴力进攻美学', poster: media('media/imges/lee-zijia-poster.jpg') },
+  { src: VID.axelsen, title: '安赛龙高光：身高臂展与控制流', poster: media('media/imges/an-sai-long.jpg') },
+  { src: VID.leeZijia, title: '李梓嘉高光：暴力进攻美学', poster: media('media/imges/li-zi-jia.jpg') },
 ]
 
 const rankings = [
@@ -44,6 +46,7 @@ const care = [
   { title: '羽毛球存放', desc: '保持球桶密封并置于阴凉处，比赛用球提前一晚加湿回潮，飞行会更稳定。' },
   { title: '拍线张力', desc: '建议每 3–6 个月或断线后重穿，磅数变化以 1–2 磅为梯度，避免突然大幅调整。' },
 ]
+const { loading } = useFakeLoad(700)
 </script>
 
 <template>
@@ -71,8 +74,9 @@ const care = [
         <div class="section-head">
           <h2 class="section-title">视频实测</h2>
         </div>
-        <div class="video-grid">
-          <figure v-for="v in videos" :key="v.title" class="video-card">
+        <SkeletonLoader v-if="loading" variant="grid" :count="2" :cols="2" :img-height="340" />
+        <div v-else class="video-grid">
+          <figure v-for="v in videos" :key="v.title" class="video-card micro-card">
             <video :src="v.src" :poster="v.poster" controls preload="metadata"></video>
             <figcaption>
               <h3>{{ v.title }}</h3>
@@ -88,7 +92,8 @@ const care = [
         <div class="section-head">
           <h2 class="section-title">产品系列</h2>
         </div>
-        <div class="product-grid">
+        <SkeletonLoader v-if="loading" variant="grid" :count="5" :cols="3" :img-height="300" />
+        <div v-else class="product-grid">
           <div v-for="p in products" :key="p.name" class="product-card card">
             <img :src="p.image" :alt="p.name" loading="lazy" />
             <div class="product-body">
@@ -218,7 +223,7 @@ const care = [
 .video-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 32px;
 }
 
 .video-card {
@@ -238,7 +243,7 @@ const care = [
 }
 
 .video-card figcaption {
-  padding: 20px 24px 24px;
+  padding: 24px 28px 28px;
 }
 
 .video-card h3 {
@@ -257,7 +262,7 @@ const care = [
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 32px;
 }
 
 .product-card img {
@@ -265,7 +270,7 @@ const care = [
 }
 
 .product-body {
-  padding: 24px 26px 28px;
+  padding: 28px 30px 32px;
 }
 
 .product-body h3 {
@@ -286,12 +291,12 @@ const care = [
 .guide-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 .care,
 .guide {
-  padding: 34px 30px;
+  padding: 40px 34px;
   background: #ffffff;
 }
 

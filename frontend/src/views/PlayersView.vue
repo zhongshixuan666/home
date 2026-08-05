@@ -1,13 +1,27 @@
 <script setup>
 import PlayerCarousel from '../components/PlayerCarousel.vue'
+import SkeletonLoader from '../components/SkeletonLoader.vue'
+import { useFakeLoad } from '../composables/useFakeLoad'
 import { media } from '../media'
 
 const IMG = {
-  axelsen: media('media/imges/axelsen-poster.jpg'),
-  leeZijia: media('media/imges/lee-zijia-poster.jpg'),
+  axelsen: media('media/imges/an-sai-long.jpg'),
+  leeZijia: media('media/imges/li-zi-jia.jpg'),
+  anXiYin: media('media/imges/an-xi-yin.jpg'),
+  linDan: media('media/imges/lin-dan.jpg'),
+  liuGuoLun: media('media/imges/liu-guo-lun.jpg'),
+  shiYuQi: media('media/imges/shi-yu-qi.jpg'),
   li1: media('media/imges/li-meimiao-1.jpg'),
   li2: media('media/imges/li-meimiao-2.jpg'),
-  li3: media('media/imges/li-meimiao-3.jpg'),
+}
+
+const VIDEOS = {
+  axelsen: media('media/video/an-sai-long-web.mp4'),
+  leeZijia: media('media/video/li-zi-jia-web.mp4'),
+  anXiYin: media('media/video/an-xi-yin-web.mp4'),
+  linDan: media('media/video/lin-dan-web.mp4'),
+  liuGuoLun: media('media/video/liu-guo-lun-web.mp4'),
+  shiYuQi: media('media/video/shi-yu-qi-web.mp4'),
 }
 
 const players = [
@@ -18,9 +32,11 @@ const players = [
     country: '丹麦 · Denmark',
     birth: '1994.01.02',
     height: '194 cm',
+    status: '现役男单顶级',
     style: '打法全面，攻守均衡，身高臂长的绝对控制流',
-    gallery: [media('media/imges/4.jfif'), media('media/imges/5.jfif'), media('media/imges/6.jfif')],
-    bio: '丹麦男单领军人物，两届奥运会金牌得主。他以严谨的训练体系与极致的多拍稳定性，长期占据男单世界第一的位置，被视为这一代男单的标杆。',
+    gallery: [IMG.axelsen, media('media/imges/4.jfif'), media('media/imges/5.jfif')],
+    video: VIDEOS.axelsen,
+    bio: '丹麦男单领军人物，两届奥运会金牌得主。他以严谨的训练体系与极致的多拍稳定性统治赛场，兼具身高臂长与细腻网前，被视为这一代男单的标杆。',
     career: [
       { year: '2016', text: '作为丹麦队核心，夺得汤姆斯杯冠军，历史首次登顶' },
       { year: '2017', text: '格拉斯哥世锦赛男单夺冠，正式跻身顶尖行列' },
@@ -38,24 +54,75 @@ const players = [
     ],
   },
   {
+    id: 'shi-yuqi',
+    name: '石宇奇',
+    en: 'Shi Yu Qi',
+    country: '中国 · China',
+    birth: '1996.02.28',
+    height: '183 cm',
+    status: '男单世界第一',
+    style: '快速连贯的进攻体系，劈杀犀利，网前变化丰富，擅长节奏控制',
+    gallery: [IMG.shiYuQi],
+    video: VIDEOS.shiYuQi,
+    bio: '中国男单领军人物，2025年巴黎世锦赛男单冠军、2026年亚锦赛男单冠军。近期重返世界第一并累计达成百周世界第一，以稳定的多拍质量和关键分能力成为国羽男单的新旗帜。',
+    career: [
+      { year: '2018', text: '全英公开赛男单夺冠，同年加冕世界羽联巡回赛总决赛冠军' },
+      { year: '2025', text: '巴黎世锦赛男单夺冠，为中国男单时隔10年再夺世锦赛男单冠军' },
+      { year: '2026', text: '宁波亚锦赛男单决赛击败印度新秀谢蒂，生涯首夺亚锦赛冠军' },
+      { year: '2026', text: '重返男单世界第一，并达成累计百周世界第一的里程碑' },
+    ],
+    awards: [
+      { year: '2026', event: '亚洲羽毛球锦标赛', result: '男单冠军' },
+      { year: '2025', event: '世界羽毛球锦标赛', result: '男单冠军' },
+      { year: '2018', event: '全英公开赛', result: '男单冠军' },
+      { year: '2018', event: '世界羽联世界巡回赛总决赛', result: '男单冠军' },
+    ],
+  },
+  {
+    id: 'an-se-young',
+    name: '安洗莹',
+    en: 'An Se Young',
+    country: '韩国 · Korea',
+    birth: '2002.02.05',
+    height: '170 cm',
+    status: '女单世界第一',
+    style: '防守稳固、步伐覆盖大、多拍耐心，网前手感细腻，关键分极其稳定',
+    gallery: [IMG.anXiYin],
+    video: VIDEOS.anXiYin,
+    bio: '韩国女单领军人物，2023年世锦赛冠军、2024年巴黎奥运会金牌得主。2026赛季胜率高达97.4%，持续稳居世界第一，被视为深圳大师赛女单冠军最大热门。',
+    career: [
+      { year: '2018', text: '以初中生身份入选韩国国家队，创下韩国羽毛球选拔历史' },
+      { year: '2023', text: '夺得世界羽毛球锦标赛女单冠军，正式开启女单统治期' },
+      { year: '2024', text: '巴黎奥运会女单决赛夺冠，收获个人首枚奥运金牌' },
+      { year: '2026', text: '保持世界第一与高胜率，领衔参加新德里世锦赛与深圳大师赛' },
+    ],
+    awards: [
+      { year: '2024', event: '巴黎奥运会', result: '女单金牌' },
+      { year: '2023', event: '世界羽毛球锦标赛', result: '女单冠军' },
+      { year: '2025', event: '世界羽联年度评选', result: '年度最佳女运动员' },
+    ],
+  },
+  {
     id: 'lee-zijia',
     name: '李梓嘉',
     en: 'Lee Zii Jia',
     country: '马来西亚 · Malaysia',
     birth: '1998.03.29',
     height: '186 cm',
+    status: '巴黎奥运铜牌',
     style: '强力进攻型打法，杀球爆发力出众，观赏性极强',
-    gallery: [media('media/imges/product-1.jpeg'), media('media/imges/product-2.jpeg')],
-    bio: '马来西亚男单一哥，凭借极具冲击力的进攻风格在国际赛场屡创佳绩。他继承了东南亚男单的传统特色，以重杀和快速连贯闻名。',
+    gallery: [IMG.leeZijia, media('media/imges/product-1.jpeg'), media('media/imges/product-2.jpeg')],
+    video: VIDEOS.leeZijia,
+    bio: '马来西亚男单代表，以极具冲击力的重杀和快速连贯闻名。2024年巴黎奥运会夺得男单铜牌，成为马来西亚新一代表现最稳定的男单旗帜之一。',
     career: [
       { year: '2021', text: '全英公开赛男单夺冠，成为马来西亚新一任全英冠军' },
       { year: '2022', text: '亚洲羽毛球锦标赛男单夺金，首获洲际大赛冠军' },
       { year: '2022', text: '泰国公开赛男单登顶，赛季状态持续火热' },
       { year: '2023', text: '再次夺得泰国公开赛冠军，巩固顶级男单地位' },
-      { year: '2024', text: '巴黎奥运会闯入男单四强，刷新个人奥运最佳战绩' },
+      { year: '2024', text: '巴黎奥运会男单铜牌赛三局逆转拉克什亚，收获生涯首枚奥运奖牌' },
     ],
     awards: [
-      { year: '2024', event: '巴黎奥运会', result: '男单第四名' },
+      { year: '2024', event: '巴黎奥运会', result: '男单铜牌' },
       { year: '2023', event: '泰国公开赛', result: '男单冠军' },
       { year: '2022', event: '亚洲羽毛球锦标赛', result: '男单金牌' },
       { year: '2022', event: '泰国公开赛', result: '男单冠军' },
@@ -64,44 +131,93 @@ const players = [
     ],
   },
   {
-    id: 'li-meimiao',
-    name: '李美秒',
-    en: 'Li Meimiao',
+    id: 'lin-dan',
+    name: '林丹',
+    en: 'Lin Dan',
     country: '中国 · China',
-    birth: '2005.08.14',
-    height: '172 cm',
-    style: '技术细腻，网前手感出色，以节奏变化制胜',
-    gallery: [IMG.li1, IMG.li2, media('media/imges/8.jpg')],
-    bio: '中国女单新生代代表人物。她从青年赛一路走来，以冷静的头脑和出色的网前技术受到关注，被视为中国女单未来的希望之一。',
+    birth: '1983.10.14',
+    height: '178 cm',
+    status: '2020年退役',
+    style: '左手持拍，拉吊突击，鱼跃救球与关键分大心脏闻名',
+    gallery: [IMG.linDan],
+    video: VIDEOS.linDan,
+    bio: '“超级丹”，中国羽毛球男单传奇。他集奥运冠军、世锦赛冠军、世界杯冠军、亚运会冠军、亚锦赛冠军与全英赛冠军于一身，以2008、2012两枚奥运金牌和五届世锦赛冠军成为羽毛球历史上的标志性人物。',
     career: [
-      { year: '2023', text: '全国青年羽毛球锦标赛女单夺冠，崭露头角' },
-      { year: '2024', text: '亚洲青年羽毛球锦标赛女单金牌' },
-      { year: '2025', text: '首次入选国家一队，开启成年组征战' },
-      { year: '2025', text: '全国羽毛球锦标赛女单亚军' },
-      { year: '2026', text: '世界羽联超级 500 赛闯入四强，创造个人最佳' },
+      { year: '2008', text: '北京奥运会男单决赛夺冠，首次站上奥运最高领奖台' },
+      { year: '2012', text: '伦敦奥运会男单决赛击败李宗伟，实现奥运两连冠' },
+      { year: '2013', text: '广州世锦赛第五次夺得男单冠军，延续世锦赛统治' },
+      { year: '2020', text: '正式宣布退役，结束国家队生涯与职业赛场征程' },
     ],
     awards: [
-      { year: '2026', event: '世界羽联超级 500 赛', result: '女单四强' },
-      { year: '2025', event: '全国羽毛球锦标赛', result: '女单亚军' },
-      { year: '2024', event: '亚洲青年羽毛球锦标赛', result: '女单金牌' },
-      { year: '2023', event: '全国青年羽毛球锦标赛', result: '女单冠军' },
+      { year: '2013', event: '世界羽毛球锦标赛', result: '男单冠军' },
+      { year: '2012', event: '伦敦奥运会', result: '男单金牌' },
+      { year: '2011', event: '世界羽毛球锦标赛', result: '男单冠军' },
+      { year: '2009', event: '世界羽毛球锦标赛', result: '男单冠军' },
+      { year: '2008', event: '北京奥运会', result: '男单金牌' },
+      { year: '2007', event: '世界羽毛球锦标赛', result: '男单冠军' },
+    ],
+  },
+  {
+    id: 'li-meimiao',
+    name: '李美妙',
+    en: 'Pornpawee Chochuwong',
+    country: '泰国 · Thailand',
+    birth: '1998.01.22',
+    height: '170 cm',
+    status: '世界排名第8',
+    style: '攻守兼备，脚步移动快，反手线路变化丰富，网前抢网积极',
+    gallery: [IMG.li2, IMG.li1],
+    bio: '泰国女单名将，本名蓬帕威·磋楚翁。她在学校学习中文后为自己取名“李美妙”，以扎实的移动和线路变化常年稳定在世界女单前列，2026年澳大利亚公开赛闯入女单决赛。',
+    career: [
+      { year: '2015', text: '亚洲青年羽毛球锦标赛女单亚军，进入国际视野' },
+      { year: '2016', text: '世界青年羽毛球锦标赛女单亚军' },
+      { year: '2020', text: '西班牙大师赛女单决赛爆冷击败马林，夺得冠军' },
+      { year: '2026', text: '澳大利亚公开赛闯入女单决赛，世界排名升至第8位' },
+    ],
+    awards: [
+      { year: '2026', event: '澳大利亚公开赛', result: '女单亚军' },
+      { year: '2020', event: '西班牙大师赛', result: '女单冠军' },
+      { year: '2016', event: '世界青年羽毛球锦标赛', result: '女单亚军' },
+      { year: '2015', event: '亚洲青年羽毛球锦标赛', result: '女单亚军' },
+    ],
+  },
+  {
+    id: 'liu-guo-lun',
+    name: '刘国伦',
+    en: 'Daren Liew',
+    country: '马来西亚 · Malaysia',
+    birth: '1987.08.06',
+    height: '178 cm',
+    status: '自由人 · 世锦赛铜牌',
+    style: '扎实的控制型打法，防守韧性出色，擅长以耐心拖入多拍',
+    gallery: [IMG.liuGuoLun],
+    video: VIDEOS.liuGuoLun,
+    bio: '马来西亚男单老将，以自由人身份长期坚持征战国际赛场。2018年南京世锦赛带伤闯入四强，最终与谌龙并列获得男单铜牌，成为那届世锦赛最励志的球员之一。',
+    career: [
+      { year: '2018', text: '南京世锦赛1/4决赛带伤三局险胜常山干太，闯入男单四强' },
+      { year: '2018', text: '半决赛不敌桃田贤斗，获得男单铜牌，创个人世锦赛最佳战绩' },
+      { year: '2018', text: '以亚运会参赛名额回报大马羽总，继续以自由人身份参赛' },
+    ],
+    awards: [
+      { year: '2018', event: '世界羽毛球锦标赛', result: '男单铜牌' },
     ],
   },
 ]
 
 const rankings = [
-  { rank: '1', name: '安赛龙', country: '丹麦', points: '102,540' },
-  { rank: '2', name: '李梓嘉', country: '马来西亚', points: '96,280' },
-  { rank: '3', name: '石宇奇', country: '中国', points: '91,730' },
-  { rank: '4', name: '昆拉武特', country: '泰国', points: '87,460' },
-  { rank: '5', name: '乔纳坦', country: '印尼', points: '83,910' },
+  { rank: '1', name: '石宇奇', country: '中国', points: '94,655' },
+  { rank: '2', name: '昆拉武特', country: '泰国', points: '91,215' },
+  { rank: '3', name: '乔纳坦', country: '印尼', points: '89,231' },
+  { rank: '4', name: '安东森', country: '丹麦', points: '87,705' },
+  { rank: '5', name: '小波波夫', country: '法国', points: '87,002' },
 ]
 
 const quotes = [
   { text: '每一分都是独立的，忘记上一分，专注下一分。', author: '安赛龙' },
   { text: '进攻不是莽撞，而是把机会压缩到对手无法反应。', author: '李梓嘉' },
-  { text: '我还年轻，我的名字值得被记住。', author: '李美秒' },
+  { text: '多拍不会说谎，稳定才是女单最深的护城河。', author: '李美妙' },
 ]
+const { loading } = useFakeLoad(700)
 </script>
 
 <template>
@@ -118,20 +234,24 @@ const quotes = [
       <section class="section" :class="{ 'section-alt': i % 2 === 1 }">
         <div class="container">
           <div class="player-head">
-            <PlayerCarousel :images="p.gallery" :alt="p.name" />
-            <div class="player-profile">
+            <SkeletonLoader v-if="loading" variant="carousel" />
+            <template v-else>
+              <PlayerCarousel :images="p.gallery" :alt="p.name" />
+              <div class="player-profile">
               <h2>{{ p.name }}<span class="player-en">{{ p.en }}</span></h2>
               <ul class="player-facts">
                 <li><span>协会</span>{{ p.country }}</li>
                 <li><span>出生日期</span>{{ p.birth }}</li>
                 <li><span>身高</span>{{ p.height }}</li>
+                <li><span>当前</span>{{ p.status }}</li>
                 <li><span>技术特点</span>{{ p.style }}</li>
               </ul>
               <p class="player-bio">{{ p.bio }}</p>
-            </div>
+              </div>
+            </template>
           </div>
 
-          <div class="player-detail">
+          <div v-if="!loading" class="player-detail">
             <div class="detail-col">
               <h3>荣誉生涯</h3>
               <div class="hairline"></div>
@@ -164,6 +284,14 @@ const quotes = [
                 </table>
               </div>
             </div>
+          </div>
+
+          <div v-if="!loading && p.video" class="player-video">
+            <div class="video-head">
+              <h3>高光视频</h3>
+              <span>{{ p.name }} · 赛场片段</span>
+            </div>
+            <video :src="p.video" :poster="p.gallery[0]" controls preload="metadata"></video>
           </div>
         </div>
       </section>
@@ -203,7 +331,7 @@ const quotes = [
           <h2 class="section-title">球员语录</h2>
         </div>
         <div class="quotes-grid">
-          <div v-for="q in quotes" :key="q.author" class="quote-card">
+          <div v-for="q in quotes" :key="q.author" class="quote-card micro-card">
             <p class="quote-text">“{{ q.text }}”</p>
             <p class="quote-author">{{ q.author }}</p>
           </div>
@@ -216,18 +344,11 @@ const quotes = [
         <div class="section-head">
           <h2 class="section-title">更多球员</h2>
         </div>
-        <div class="more-grid">
-          <div class="more-card card">
-            <img :src="IMG.li1" alt="李美秒" loading="lazy" />
-            <p>李美秒 · 中国</p>
-          </div>
-          <div class="more-card card">
-            <img :src="IMG.axelsen" alt="安赛龙" loading="lazy" />
-            <p>安赛龙 · 丹麦</p>
-          </div>
-          <div class="more-card card">
-            <img :src="IMG.leeZijia" alt="李梓嘉" loading="lazy" />
-            <p>李梓嘉 · 马来西亚</p>
+        <SkeletonLoader v-if="loading" variant="grid" :count="6" :cols="3" :img-height="280" />
+        <div v-else class="more-grid">
+          <div v-for="p in players" :key="p.id" class="more-card card micro-card">
+            <img :src="p.gallery[0]" :alt="p.name" loading="lazy" />
+            <p>{{ p.name }} · {{ p.country.split(' · ')[0] }}</p>
           </div>
         </div>
       </div>
@@ -245,7 +366,7 @@ const quotes = [
 .player-head {
   display: grid;
   grid-template-columns: 420px 1fr;
-  gap: 56px;
+  gap: 64px;
   align-items: center;
 }
 
@@ -297,10 +418,44 @@ const quotes = [
 .player-detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  margin-top: 64px;
-  padding-top: 56px;
+  gap: 64px;
+  margin-top: 72px;
+  padding-top: 64px;
   border-top: 1px solid var(--line);
+}
+
+.player-video {
+  margin-top: 64px;
+  padding-top: 64px;
+  border-top: 1px solid var(--line);
+}
+
+.video-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.video-head h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--paper);
+  letter-spacing: 0.14em;
+}
+
+.video-head span {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+}
+
+.player-video video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111111;
+  object-fit: cover;
 }
 
 .detail-col h3 {
@@ -361,11 +516,11 @@ const quotes = [
 .quotes-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 32px;
 }
 
 .quote-card {
-  padding: 40px 34px;
+  padding: 48px 40px;
   border: 1px solid var(--line);
   background: #ffffff;
 }
@@ -388,7 +543,7 @@ const quotes = [
 .more-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 32px;
 }
 
 .more-card img {
@@ -396,7 +551,7 @@ const quotes = [
 }
 
 .more-card p {
-  padding: 18px 22px;
+  padding: 22px 26px;
   font-family: var(--serif);
   font-size: 17px;
   color: var(--paper);
@@ -409,6 +564,11 @@ const quotes = [
   }
   .player-detail {
     grid-template-columns: 1fr;
+  }
+  .video-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
   .quotes-grid,
   .more-grid {
