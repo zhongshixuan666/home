@@ -1,18 +1,12 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import NewsView from '../views/NewsView.vue'
-import PlayersView from '../views/PlayersView.vue'
-import MatchesView from '../views/MatchesView.vue'
-import ContactView from '../views/ContactView.vue'
-import GearView from '../views/GearView.vue'
 
 const routes = [
-  { path: '/', name: 'home', component: HomeView, meta: { title: '首页' } },
-  { path: '/news', name: 'news', component: NewsView, meta: { title: '资讯' } },
-  { path: '/players', name: 'players', component: PlayersView, meta: { title: '球员' } },
-  { path: '/matches', name: 'matches', component: MatchesView, meta: { title: '比赛' } },
-  { path: '/contact', name: 'contact', component: ContactView, meta: { title: '联系我们' } },
-  { path: '/gear', name: 'gear', component: GearView, meta: { title: '装备' } },
+  { path: '/', name: 'home', component: () => import('../views/HomeView.vue'), meta: { title: '首页' } },
+  { path: '/news', name: 'news', component: () => import('../views/NewsView.vue'), meta: { title: '资讯' } },
+  { path: '/players', name: 'players', component: () => import('../views/PlayersView.vue'), meta: { title: '球员' } },
+  { path: '/matches', name: 'matches', component: () => import('../views/MatchesView.vue'), meta: { title: '比赛' } },
+  { path: '/contact', name: 'contact', component: () => import('../views/ContactView.vue'), meta: { title: '联系我们' } },
+  { path: '/gear', name: 'gear', component: () => import('../views/GearView.vue'), meta: { title: '装备' } },
 ]
 
 const router = createRouter({

@@ -52,15 +52,7 @@ const { loading } = useFakeLoad(700)
 <template>
   <div>
     <section class="gear-hero">
-      <video
-        class="bg-video"
-        :src="VID.promo1"
-        :poster="IMG.banner"
-        autoplay
-        muted
-        loop
-        playsinline
-      ></video>
+      <img :src="IMG.banner" alt="装备" class="bg-image" loading="eager" fetchpriority="high" />
       <div class="gear-mask"></div>
       <div class="container gear-hero-content">
         <p class="eyebrow">Gear & Equipment</p>
@@ -182,7 +174,7 @@ const { loading } = useFakeLoad(700)
   border-bottom: 1px solid var(--line);
 }
 
-.bg-video {
+.bg-image {
   position: absolute;
   inset: 0;
   width: 100%;
