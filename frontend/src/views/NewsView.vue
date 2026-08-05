@@ -1,15 +1,16 @@
 <script setup>
 import { ref } from 'vue'
+import { media } from '../media'
 
 const IMG = {
-  li1: '/media/imges/li-meimiao-1.jpg',
-  li3: '/media/imges/li-meimiao-3.jpg',
-  axelsen: '/media/imges/axelsen-poster.jpg',
-  leeZijia: '/media/imges/lee-zijia-poster.jpg',
-  gear1: '/media/imges/gear-1.jpg',
-  gear2: '/media/imges/gear-2.jpg',
-  product3: '/media/imges/product-3.png',
-  banner: '/media/imges/hero-banner.jpg',
+  li1: media('media/imges/li-meimiao-1.jpg'),
+  li3: media('media/imges/li-meimiao-3.jpg'),
+  axelsen: media('media/imges/axelsen-poster.jpg'),
+  leeZijia: media('media/imges/lee-zijia-poster.jpg'),
+  gear1: media('media/imges/gear-1.jpg'),
+  gear2: media('media/imges/gear-2.jpg'),
+  product3: media('media/imges/product-3.png'),
+  banner: media('media/imges/hero-banner.jpg'),
 }
 
 const categories = ['全部', '赛事', '人物', '装备', '深度']

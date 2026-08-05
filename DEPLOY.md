@@ -55,3 +55,15 @@ docker compose exec web python manage.py migrate
 - `media/`、`staticfiles/`、`db.sqlite3`、`.env.production` 均不提交到 git
 - 生产环境必须更换 `DJANGO_SECRET_KEY`，并避免使用默认弱密码
 - 演示部署直接由 Django 提供媒体文件；流量较大时建议改用对象存储或 Nginx 托管
+
+## GitHub Pages 部署（前端静态版）
+
+GitHub Pages 只能托管静态文件，无法运行 Django。前端已支持子路径部署：
+
+- 站点资源（图片/视频）已复制到 `frontend/public/media/`，随构建发布
+- 媒体与 API 路径自动适配部署前缀（开发环境 `/`，Pages 为 `/home/`）
+- Pages 构建使用 Hash 路由（`VITE_HASH_ROUTER=1`），刷新深链接不丢失
+
+推送 `main` 分支后，[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 会自动构建前端并发布到 GitHub Pages。
+
+注意：此模式下「联系表单」提交与后台管理不可用（需要后端），需要完整功能请使用 Docker 方案部署到服务器。

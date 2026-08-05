@@ -1,18 +1,20 @@
 <script setup>
+import { media } from '../media'
+
 const VID = {
-  promo1: '/media/video/promo-1-web.mp4',
-  promo2: '/media/video/promo-2-web.mp4',
-  axelsen: '/media/video/axelsen-highlight-web.mp4',
-  leeZijia: '/media/video/lee-zijia-highlight-web.mp4',
+  promo1: media('media/video/promo-1-web.mp4'),
+  promo2: media('media/video/promo-2-web.mp4'),
+  axelsen: media('media/video/axelsen-highlight-web.mp4'),
+  leeZijia: media('media/video/lee-zijia-highlight-web.mp4'),
 }
 
 const IMG = {
-  banner: '/media/imges/hero-banner.jpg',
-  gear1: '/media/imges/gear-1.jpg',
-  gear2: '/media/imges/gear-2.jpg',
-  product1: '/media/imges/product-1.jpeg',
-  product2: '/media/imges/product-2.jpeg',
-  product3: '/media/imges/product-3.png',
+  banner: media('media/imges/hero-banner.jpg'),
+  gear1: media('media/imges/gear-1.jpg'),
+  gear2: media('media/imges/gear-2.jpg'),
+  product1: media('media/imges/product-1.jpeg'),
+  product2: media('media/imges/product-2.jpeg'),
+  product3: media('media/imges/product-3.png'),
 }
 
 const products = [
@@ -26,8 +28,8 @@ const products = [
 const videos = [
   { src: VID.promo1, title: '2026 春季系列宣传片', poster: IMG.banner },
   { src: VID.promo2, title: '实战测试：高弹拍线专项', poster: IMG.gear2 },
-  { src: VID.leeZijia, title: '安赛龙训练集锦：多拍稳定性', poster: '/media/imges/axelsen-poster.jpg' },
-  { src: VID.axelsen, title: '李梓嘉集锦：暴力进攻美学', poster: '/media/imges/lee-zijia-poster.jpg' },
+  { src: VID.leeZijia, title: '安赛龙训练集锦：多拍稳定性', poster: media('media/imges/axelsen-poster.jpg') },
+  { src: VID.axelsen, title: '李梓嘉集锦：暴力进攻美学', poster: media('media/imges/lee-zijia-poster.jpg') },
 ]
 
 const rankings = [

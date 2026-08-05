@@ -1,4 +1,8 @@
 <script setup>
+import { media } from './media'
+
+const logo = media('logo.svg')
+
 const navs = [
   { name: '首页', path: '/' },
   { name: '资讯', path: '/news' },
@@ -14,7 +18,7 @@ const navs = [
     <header class="topbar">
       <div class="container topbar-inner">
         <RouterLink to="/" class="brand">
-          <img src="/logo.svg" alt="羽界" class="brand-logo" />
+          <img :src="logo" alt="羽界" class="brand-logo" />
         </RouterLink>
         <nav class="nav">
           <RouterLink v-for="item in navs" :key="item.path" :to="item.path" class="nav-link">

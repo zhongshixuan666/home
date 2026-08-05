@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NewsView from '../views/NewsView.vue'
 import PlayersView from '../views/PlayersView.vue'
@@ -16,7 +16,10 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history:
+    import.meta.env.VITE_HASH_ROUTER === '1'
+      ? createWebHashHistory(import.meta.env.BASE_URL)
+      : createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior() {
     return { top: 0 }

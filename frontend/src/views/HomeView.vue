@@ -1,12 +1,14 @@
 <script setup>
+import { media } from '../media'
+
 const IMG = {
-  heroMain: '/media/imges/hero-main.jpg',
-  heroBanner: '/media/imges/hero-banner.jpg',
-  axelsen: '/media/imges/axelsen-poster.jpg',
-  leeZijia: '/media/imges/lee-zijia-poster.jpg',
-  gear1: '/media/imges/gear-1.jpg',
-  li1: '/media/imges/li-meimiao-1.jpg',
-  product3: '/media/imges/product-3.png',
+  heroMain: media('media/imges/hero-main.jpg'),
+  heroBanner: media('media/imges/hero-banner.jpg'),
+  axelsen: media('media/imges/axelsen-poster.jpg'),
+  leeZijia: media('media/imges/lee-zijia-poster.jpg'),
+  gear1: media('media/imges/gear-1.jpg'),
+  li1: media('media/imges/li-meimiao-1.jpg'),
+  product3: media('media/imges/product-3.png'),
 }
 
 const stats = [

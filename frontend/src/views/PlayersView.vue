@@ -1,12 +1,13 @@
 <script setup>
 import PlayerCarousel from '../components/PlayerCarousel.vue'
+import { media } from '../media'
 
 const IMG = {
-  axelsen: '/media/imges/axelsen-poster.jpg',
-  leeZijia: '/media/imges/lee-zijia-poster.jpg',
-  li1: '/media/imges/li-meimiao-1.jpg',
-  li2: '/media/imges/li-meimiao-2.jpg',
-  li3: '/media/imges/li-meimiao-3.jpg',
+  axelsen: media('media/imges/axelsen-poster.jpg'),
+  leeZijia: media('media/imges/lee-zijia-poster.jpg'),
+  li1: media('media/imges/li-meimiao-1.jpg'),
+  li2: media('media/imges/li-meimiao-2.jpg'),
+  li3: media('media/imges/li-meimiao-3.jpg'),
 }
 
 const players = [
@@ -18,7 +19,7 @@ const players = [
     birth: '1994.01.02',
     height: '194 cm',
     style: '打法全面，攻守均衡，身高臂长的绝对控制流',
-    gallery: ['/media/imges/4.jfif', '/media/imges/5.jfif', '/media/imges/6.jfif'],
+    gallery: [media('media/imges/4.jfif'), media('media/imges/5.jfif'), media('media/imges/6.jfif')],
     bio: '丹麦男单领军人物，两届奥运会金牌得主。他以严谨的训练体系与极致的多拍稳定性，长期占据男单世界第一的位置，被视为这一代男单的标杆。',
     career: [
       { year: '2016', text: '作为丹麦队核心，夺得汤姆斯杯冠军，历史首次登顶' },
@@ -44,7 +45,7 @@ const players = [
     birth: '1998.03.29',
     height: '186 cm',
     style: '强力进攻型打法，杀球爆发力出众，观赏性极强',
-    gallery: ['/media/imges/product-1.jpeg', '/media/imges/product-2.jpeg'],
+    gallery: [media('media/imges/product-1.jpeg'), media('media/imges/product-2.jpeg')],
     bio: '马来西亚男单一哥，凭借极具冲击力的进攻风格在国际赛场屡创佳绩。他继承了东南亚男单的传统特色，以重杀和快速连贯闻名。',
     career: [
       { year: '2021', text: '全英公开赛男单夺冠，成为马来西亚新一任全英冠军' },
@@ -70,7 +71,7 @@ const players = [
     birth: '2005.08.14',
     height: '172 cm',
     style: '技术细腻，网前手感出色，以节奏变化制胜',
-    gallery: [IMG.li1, IMG.li2, '/media/imges/8.jpg'],
+    gallery: [IMG.li1, IMG.li2, media('media/imges/8.jpg')],
     bio: '中国女单新生代代表人物。她从青年赛一路走来，以冷静的头脑和出色的网前技术受到关注，被视为中国女单未来的希望之一。',
     career: [
       { year: '2023', text: '全国青年羽毛球锦标赛女单夺冠，崭露头角' },

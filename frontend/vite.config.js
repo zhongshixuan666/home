@@ -74,6 +74,7 @@ function serveDesktopMedia() {
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.VITE_BASE || '/',
   plugins: [vue(), serveDesktopMedia()],
   server: {
     port: 5173,
