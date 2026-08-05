@@ -61,8 +61,8 @@ docker compose exec web python manage.py migrate
 GitHub Pages 只能托管静态文件，无法运行 Django。前端已支持子路径部署：
 
 - 站点资源（图片/视频）已复制到 `frontend/public/media/`，随构建发布
-- 媒体与 API 路径自动适配部署前缀（开发环境 `/`，Pages 为 `/home/`）
-- Pages 构建使用 Hash 路由（`VITE_HASH_ROUTER=1`），刷新深链接不丢失
+- 前端构建为多页面 HTML：`index.html`、`news.html`、`players.html`、`matches.html`、`contact.html`、`gear.html`
+- 媒体路径自动适配部署前缀（开发环境 `/`，Pages 为 `/home/`）
 
 推送 `main` 分支后，[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 会自动构建前端并发布到 GitHub Pages。
 

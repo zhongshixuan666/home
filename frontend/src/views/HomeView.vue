@@ -70,8 +70,8 @@ const { loading } = useFakeLoad(650)
         <h1>羽界</h1>
         <p class="hero-sub">以专业视角，记录羽毛球世界的每一次挥拍与荣耀。</p>
         <div class="hero-actions">
-          <RouterLink to="/news" class="btn btn-solid">浏览资讯</RouterLink>
-          <RouterLink to="/players" class="btn">球员风采</RouterLink>
+          <a :href="media('news.html')" class="btn btn-solid">浏览资讯</a>
+          <a :href="media('players.html')" class="btn">球员风采</a>
         </div>
       </div>
       <div class="container">
@@ -95,11 +95,11 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">最新资讯</h2>
-          <RouterLink to="/news" class="section-more">全部资讯 →</RouterLink>
+          <a :href="media('news.html')" class="section-more">全部资讯 →</a>
         </div>
         <SkeletonLoader v-if="loading" variant="grid" :count="4" :cols="4" />
         <div v-else class="news-grid">
-          <RouterLink v-for="n in news" :key="n.title" to="/news" class="news-card card micro-card">
+          <a v-for="n in news" :key="n.title" :href="media('news.html')" class="news-card card micro-card">
             <img :src="n.image" :alt="n.title" loading="lazy" />
             <div class="news-body">
               <div class="news-meta">
@@ -108,7 +108,7 @@ const { loading } = useFakeLoad(650)
               </div>
               <h3>{{ n.title }}</h3>
             </div>
-          </RouterLink>
+          </a>
         </div>
       </div>
     </section>
@@ -117,26 +117,26 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">焦点人物</h2>
-          <RouterLink to="/players" class="section-more">全部球员 →</RouterLink>
+          <a :href="media('players.html')" class="section-more">全部球员 →</a>
         </div>
         <SkeletonLoader v-if="loading" variant="grid" :count="2" :cols="2" :img-height="420" />
         <div v-else class="people-grid">
-          <RouterLink to="/players" class="person-card micro-card">
+          <a :href="media('players.html')" class="person-card micro-card">
             <img :src="IMG.axelsen" alt="安赛龙" loading="lazy" />
             <div class="person-info">
               <p class="person-meta">丹麦 · 男单</p>
               <h3>安赛龙</h3>
               <p class="person-note">两届奥运金牌得主，男单统治力标杆。</p>
             </div>
-          </RouterLink>
-          <RouterLink to="/players" class="person-card micro-card">
+          </a>
+          <a :href="media('players.html')" class="person-card micro-card">
             <img :src="IMG.leeZijia" alt="李梓嘉" loading="lazy" />
             <div class="person-info">
               <p class="person-meta">马来西亚 · 男单</p>
               <h3>李梓嘉</h3>
               <p class="person-note">全英冠军，暴力进攻派的代表人物。</p>
             </div>
-          </RouterLink>
+          </a>
         </div>
       </div>
     </section>
@@ -145,7 +145,7 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">赛事速览</h2>
-          <RouterLink to="/matches" class="section-more">全部比赛 →</RouterLink>
+          <a :href="media('matches.html')" class="section-more">全部比赛 →</a>
         </div>
         <SkeletonLoader v-if="loading" variant="grid" :count="3" :cols="3" :img-height="0" />
         <div v-else class="match-grid">
@@ -180,7 +180,7 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">装备精选</h2>
-          <RouterLink to="/gear" class="section-more">进入装备区 →</RouterLink>
+          <a :href="media('gear.html')" class="section-more">进入装备区 →</a>
         </div>
         <div class="gear-feature micro-card">
           <img :src="IMG.gear1" alt="装备精选" loading="lazy" />
@@ -190,7 +190,7 @@ const { loading } = useFakeLoad(650)
             <p>
               我们实地测评球拍、球鞋、羽毛球与配件，用真实数据帮助你找到适合自己的装备。装备区配有实拍视频，直观展示产品细节。
             </p>
-            <RouterLink to="/gear" class="btn">查看装备</RouterLink>
+            <a :href="media('gear.html')" class="btn">查看装备</a>
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@ const { loading } = useFakeLoad(650)
           <h2>不错过任何一场好球</h2>
           <p>关注赛事日历、球员动态与装备测评，订阅我们的每周资讯。</p>
         </div>
-        <RouterLink to="/contact" class="btn btn-solid">联系我们</RouterLink>
+        <a :href="media('contact.html')" class="btn btn-solid">联系我们</a>
       </div>
     </section>
   </div>

@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -71,10 +72,48 @@ function serveDesktopMedia() {
   }
 }
 
+function servePageAliases() {
+  const aliases = {
+    '/news': '/news.html',
+    '/players': '/players.html',
+    '/matches': '/matches.html',
+    '/contact': '/contact.html',
+    '/gear': '/gear.html',
+  }
+  const handler = (req, res, next) => {
+    const urlPath = decodeURIComponent(req.url.split('?')[0])
+    if (aliases[urlPath]) {
+      req.url = req.url.replace(urlPath, aliases[urlPath])
+    }
+    next()
+  }
+  return {
+    name: 'serve-page-aliases',
+    configureServer(server) {
+      server.middlewares.use(handler)
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(handler)
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   base: process.env.VITE_BASE || '/',
-  plugins: [vue(), serveDesktopMedia()],
+  plugins: [vue(), servePageAliases(), serveDesktopMedia()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        news: fileURLToPath(new URL('./news.html', import.meta.url)),
+        players: fileURLToPath(new URL('./players.html', import.meta.url)),
+        matches: fileURLToPath(new URL('./matches.html', import.meta.url)),
+        contact: fileURLToPath(new URL('./contact.html', import.meta.url)),
+        gear: fileURLToPath(new URL('./gear.html', import.meta.url)),
+      },
+    },
+  },
   server: {
     port: 5173,
     proxy: {

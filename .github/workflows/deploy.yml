@@ -31,7 +31,6 @@ jobs:
         working-directory: frontend
         env:
           VITE_BASE: /home/
-          VITE_HASH_ROUTER: '1'
         run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
