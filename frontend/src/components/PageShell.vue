@@ -8,12 +8,12 @@ defineProps({
 const logo = media('logo.svg')
 
 const navs = [
-  { name: '首页', href: media('index.html') },
-  { name: '资讯', href: media('news.html') },
-  { name: '球员', href: media('players.html') },
-  { name: '比赛', href: media('matches.html') },
-  { name: '联系我们', href: media('contact.html') },
-  { name: '装备', href: media('gear.html') },
+  { name: '首页', href: media('pages/index.html') },
+  { name: '资讯', href: media('pages/news.html') },
+  { name: '球员', href: media('pages/players.html') },
+  { name: '比赛', href: media('pages/matches.html') },
+  { name: '联系我们', href: media('pages/contact.html') },
+  { name: '装备', href: media('pages/gear.html') },
 ]
 
 const currentFile = (window.location.pathname.split('/').filter(Boolean).pop() || 'index.html').toLowerCase()
@@ -28,7 +28,7 @@ function isActive(href) {
   <div class="app">
     <header class="topbar">
       <div class="container topbar-inner">
-        <a :href="media('index.html')" class="brand">
+        <a :href="media('pages/index.html')" class="brand">
           <img :src="logo" alt="羽界" class="brand-logo" />
         </a>
         <nav class="nav">

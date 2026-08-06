@@ -58,7 +58,7 @@ sport_website/
 ## 架构约定
 
 - 前端访问后端统一走 `/api/` 前缀；Vite 开发服务器会把 `/api` 请求代理到 `http://127.0.0.1:8000`（见 `frontend/vite.config.js`）
-- 桌面素材通过 `/media/video/` 与 `/media/imges/` 映射到 `C:\Users\轩\Desktop\video` 与 `C:\Users\轩\Desktop\imges`（仅 Vite 开发/预览模式可用）
+- 桌面素材通过 `/videos/` 与 `/images/` 映射到 `C:\Users\轩\Desktop\video` 与 `C:\Users\轩\Desktop\imges`（仅 Vite 开发/预览模式可用）
 - 管理后台固定在 `/admin/`，使用 SimpleUI 主题
 - 联系表单提交到 `POST /api/contact/`，数据存入 SQLite 的 `contract` 表，后台一级菜单「联系表单」下可管理
 - 业务接口写在 `core/` 应用中：视图在 `core/views.py`，路由在 `core/urls.py`，并在 `sport_website/urls.py` 中用 `include` 挂载

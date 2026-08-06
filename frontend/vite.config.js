@@ -17,16 +17,16 @@ const MIME = {
   '.gif': 'image/gif',
 }
 
-// 将 /media/video 与 /media/imges 映射到桌面素材目录，供开发与预览时直接访问
+// 将 /videos 与 /images 映射到桌面素材目录，供开发与预览时直接访问
 function serveDesktopMedia() {
   const handler = (req, res, next) => {
     let file = null
     const urlPath = decodeURIComponent(req.url.split('?')[0])
     let rel = null
-    if (urlPath.startsWith('/media/video/')) {
-      rel = path.join('video', urlPath.slice('/media/video/'.length))
-    } else if (urlPath.startsWith('/media/imges/')) {
-      rel = path.join('imges', urlPath.slice('/media/imges/'.length))
+    if (urlPath.startsWith('/videos/')) {
+      rel = path.join('video', urlPath.slice('/videos/'.length))
+    } else if (urlPath.startsWith('/images/')) {
+      rel = path.join('imges', urlPath.slice('/images/'.length))
     }
     if (!rel) return next()
 
@@ -75,10 +75,16 @@ function serveDesktopMedia() {
 function servePageAliases() {
   const aliases = {
     '/news': '/news.html',
+    '/pages/news.html': '/news.html',
     '/players': '/players.html',
+    '/pages/players.html': '/players.html',
     '/matches': '/matches.html',
+    '/pages/matches.html': '/matches.html',
     '/contact': '/contact.html',
+    '/pages/contact.html': '/contact.html',
     '/gear': '/gear.html',
+    '/pages/gear.html': '/gear.html',
+    '/pages/index.html': '/index.html',
   }
   const handler = (req, res, next) => {
     const urlPath = decodeURIComponent(req.url.split('?')[0])

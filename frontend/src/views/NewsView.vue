@@ -5,14 +5,14 @@ import SkeletonLoader from '../components/SkeletonLoader.vue'
 import { useFakeLoad } from '../composables/useFakeLoad'
 
 const IMG = {
-  li1: media('media/imges/li-meimiao-1.jpg'),
-  li2: media('media/imges/li-meimiao-2.jpg'),
-  axelsen: media('media/imges/an-sai-long.jpg'),
-  leeZijia: media('media/imges/li-zi-jia.jpg'),
-  gear1: media('media/imges/gear-1.jpg'),
-  gear2: media('media/imges/gear-2.jpg'),
-  product3: media('media/imges/product-3.webp'),
-  banner: media('media/imges/hero-banner.webp'),
+  li1: media('images/li-meimiao-1.jpg'),
+  li2: media('images/li-meimiao-2.jpg'),
+  axelsen: media('images/an-sai-long.jpg'),
+  leeZijia: media('images/li-zi-jia.jpg'),
+  gear1: media('images/gear-1.jpg'),
+  gear2: media('images/gear-2.jpg'),
+  product3: media('images/product-3.webp'),
+  banner: media('images/hero-banner.webp'),
 }
 
 const categories = ['全部', '赛事', '人物', '装备', '深度']

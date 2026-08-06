@@ -5,23 +5,23 @@ import { useFakeLoad } from '../composables/useFakeLoad'
 import { media } from '../media'
 
 const IMG = {
-  axelsen: media('media/imges/an-sai-long.jpg'),
-  leeZijia: media('media/imges/li-zi-jia.jpg'),
-  anXiYin: media('media/imges/an-xi-yin.jpg'),
-  linDan: media('media/imges/lin-dan.jpg'),
-  liuGuoLun: media('media/imges/liu-guo-lun.jpg'),
-  shiYuQi: media('media/imges/shi-yu-qi.jpg'),
-  li1: media('media/imges/li-meimiao-1.jpg'),
-  li2: media('media/imges/li-meimiao-2.jpg'),
+  axelsen: media('images/an-sai-long.jpg'),
+  leeZijia: media('images/li-zi-jia.jpg'),
+  anXiYin: media('images/an-xi-yin.jpg'),
+  linDan: media('images/lin-dan.jpg'),
+  liuGuoLun: media('images/liu-guo-lun.jpg'),
+  shiYuQi: media('images/shi-yu-qi.jpg'),
+  li1: media('images/li-meimiao-1.jpg'),
+  li2: media('images/li-meimiao-2.jpg'),
 }
 
 const VIDEOS = {
-  axelsen: media('media/video/an-sai-long-web.mp4'),
-  leeZijia: media('media/video/li-zi-jia-web.mp4'),
-  anXiYin: media('media/video/an-xi-yin-web.mp4'),
-  linDan: media('media/video/lin-dan-web.mp4'),
-  liuGuoLun: media('media/video/liu-guo-lun-web.mp4'),
-  shiYuQi: media('media/video/shi-yu-qi-web.mp4'),
+  axelsen: media('videos/an-sai-long-web.mp4'),
+  leeZijia: media('videos/li-zi-jia-web.mp4'),
+  anXiYin: media('videos/an-xi-yin-web.mp4'),
+  linDan: media('videos/lin-dan-web.mp4'),
+  liuGuoLun: media('videos/liu-guo-lun-web.mp4'),
+  shiYuQi: media('videos/shi-yu-qi-web.mp4'),
 }
 
 const players = [
@@ -34,7 +34,7 @@ const players = [
     height: '194 cm',
     status: '现役男单顶级',
     style: '打法全面，攻守均衡，身高臂长的绝对控制流',
-    gallery: [IMG.axelsen, media('media/imges/4.jfif'), media('media/imges/5.jfif')],
+    gallery: [IMG.axelsen, media('images/4.jfif'), media('images/5.jfif')],
     video: VIDEOS.axelsen,
     bio: '丹麦男单领军人物，两届奥运会金牌得主。他以严谨的训练体系与极致的多拍稳定性统治赛场，兼具身高臂长与细腻网前，被视为这一代男单的标杆。',
     career: [
@@ -111,7 +111,7 @@ const players = [
     height: '186 cm',
     status: '巴黎奥运铜牌',
     style: '强力进攻型打法，杀球爆发力出众，观赏性极强',
-    gallery: [IMG.leeZijia, media('media/imges/product-1.jpeg'), media('media/imges/product-2.jpeg')],
+    gallery: [IMG.leeZijia, media('images/product-1.jpeg'), media('images/product-2.jpeg')],
     video: VIDEOS.leeZijia,
     bio: '马来西亚男单代表，以极具冲击力的重杀和快速连贯闻名。2024年巴黎奥运会夺得男单铜牌，成为马来西亚新一代表现最稳定的男单旗帜之一。',
     career: [

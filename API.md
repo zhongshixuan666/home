@@ -22,7 +22,7 @@
   "category": "赛事",
   "date": "2026-08-17",
   "excerpt": "石宇奇领衔国羽出战。",
-  "image": "/home/media/imges/hero-main.webp",
+  "image": "/home/images/hero-main.webp",
   "is_published": true
 }
 ```
@@ -43,8 +43,8 @@
   "status": "男单世界第一",
   "style": "快速连贯的进攻体系",
   "bio": "2025 年世锦赛男单冠军。",
-  "image": "/home/media/imges/shi-yu-qi.jpg",
-  "video": "/home/media/video/shi-yu-qi-web.mp4",
+  "image": "/home/images/shi-yu-qi.jpg",
+  "video": "/home/videos/shi-yu-qi-web.mp4",
   "is_published": true
 }
 ```
@@ -85,7 +85,7 @@
 {
   "name": "旗舰进攻型球拍",
   "desc": "高刚性拍框，重杀出球干脆。",
-  "image": "/home/media/imges/product-1.jpeg",
+  "image": "/home/images/product-1.jpeg",
   "tag": "球拍",
   "rank": "1",
   "score": "9.2",

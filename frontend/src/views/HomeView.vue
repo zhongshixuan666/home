@@ -4,13 +4,13 @@ import SkeletonLoader from '../components/SkeletonLoader.vue'
 import { useFakeLoad } from '../composables/useFakeLoad'
 
 const IMG = {
-  heroMain: media('media/imges/hero-main.webp'),
-  heroBanner: media('media/imges/hero-banner.webp'),
-  axelsen: media('media/imges/an-sai-long.jpg'),
-  leeZijia: media('media/imges/li-zi-jia.jpg'),
-  gear1: media('media/imges/gear-1.jpg'),
-  li1: media('media/imges/li-meimiao-2.jpg'),
-  product3: media('media/imges/product-3.webp'),
+  heroMain: media('images/hero-main.webp'),
+  heroBanner: media('images/hero-banner.webp'),
+  axelsen: media('images/an-sai-long.jpg'),
+  leeZijia: media('images/li-zi-jia.jpg'),
+  gear1: media('images/gear-1.jpg'),
+  li1: media('images/li-meimiao-2.jpg'),
+  product3: media('images/product-3.webp'),
 }
 
 const stats = [
@@ -70,8 +70,8 @@ const { loading } = useFakeLoad(650)
         <h1>羽界</h1>
         <p class="hero-sub">以专业视角，记录羽毛球世界的每一次挥拍与荣耀。</p>
         <div class="hero-actions">
-          <a :href="media('news.html')" class="btn btn-solid">浏览资讯</a>
-          <a :href="media('players.html')" class="btn">球员风采</a>
+          <a :href="media('pages/news.html')" class="btn btn-solid">浏览资讯</a>
+          <a :href="media('pages/players.html')" class="btn">球员风采</a>
         </div>
       </div>
       <div class="container">
@@ -95,11 +95,11 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">最新资讯</h2>
-          <a :href="media('news.html')" class="section-more">全部资讯 →</a>
+          <a :href="media('pages/news.html')" class="section-more">全部资讯 →</a>
         </div>
         <SkeletonLoader v-if="loading" variant="grid" :count="4" :cols="4" />
         <div v-else class="news-grid">
-          <a v-for="n in news" :key="n.title" :href="media('news.html')" class="news-card card micro-card">
+          <a v-for="n in news" :key="n.title" :href="media('pages/news.html')" class="news-card card micro-card">
             <img :src="n.image" :alt="n.title" loading="lazy" />
             <div class="news-body">
               <div class="news-meta">
@@ -117,11 +117,11 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">焦点人物</h2>
-          <a :href="media('players.html')" class="section-more">全部球员 →</a>
+          <a :href="media('pages/players.html')" class="section-more">全部球员 →</a>
         </div>
         <SkeletonLoader v-if="loading" variant="grid" :count="2" :cols="2" :img-height="420" />
         <div v-else class="people-grid">
-          <a :href="media('players.html')" class="person-card micro-card">
+          <a :href="media('pages/players.html')" class="person-card micro-card">
             <img :src="IMG.axelsen" alt="安赛龙" loading="lazy" />
             <div class="person-info">
               <p class="person-meta">丹麦 · 男单</p>
@@ -129,7 +129,7 @@ const { loading } = useFakeLoad(650)
               <p class="person-note">两届奥运金牌得主，男单统治力标杆。</p>
             </div>
           </a>
-          <a :href="media('players.html')" class="person-card micro-card">
+          <a :href="media('pages/players.html')" class="person-card micro-card">
             <img :src="IMG.leeZijia" alt="李梓嘉" loading="lazy" />
             <div class="person-info">
               <p class="person-meta">马来西亚 · 男单</p>
@@ -145,7 +145,7 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">赛事速览</h2>
-          <a :href="media('matches.html')" class="section-more">全部比赛 →</a>
+          <a :href="media('pages/matches.html')" class="section-more">全部比赛 →</a>
         </div>
         <SkeletonLoader v-if="loading" variant="grid" :count="3" :cols="3" :img-height="0" />
         <div v-else class="match-grid">
@@ -180,7 +180,7 @@ const { loading } = useFakeLoad(650)
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">装备精选</h2>
-          <a :href="media('gear.html')" class="section-more">进入装备区 →</a>
+          <a :href="media('pages/gear.html')" class="section-more">进入装备区 →</a>
         </div>
         <div class="gear-feature micro-card">
           <img :src="IMG.gear1" alt="装备精选" loading="lazy" />
@@ -190,7 +190,7 @@ const { loading } = useFakeLoad(650)
             <p>
               我们实地测评球拍、球鞋、羽毛球与配件，用真实数据帮助你找到适合自己的装备。装备区配有实拍视频，直观展示产品细节。
             </p>
-            <a :href="media('gear.html')" class="btn">查看装备</a>
+            <a :href="media('pages/gear.html')" class="btn">查看装备</a>
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@ const { loading } = useFakeLoad(650)
           <h2>不错过任何一场好球</h2>
           <p>关注赛事日历、球员动态与装备测评，订阅我们的每周资讯。</p>
         </div>
-        <a :href="media('contact.html')" class="btn btn-solid">联系我们</a>
+        <a :href="media('pages/contact.html')" class="btn btn-solid">联系我们</a>
       </div>
     </section>
   </div>

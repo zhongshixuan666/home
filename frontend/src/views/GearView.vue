@@ -4,19 +4,19 @@ import SkeletonLoader from '../components/SkeletonLoader.vue'
 import { useFakeLoad } from '../composables/useFakeLoad'
 
 const VID = {
-  promo1: media('media/video/promo-1-web.mp4'),
-  promo2: media('media/video/promo-2-web.mp4'),
-  axelsen: media('media/video/an-sai-long-web.mp4'),
-  leeZijia: media('media/video/li-zi-jia-web.mp4'),
+  promo1: media('videos/promo-1-web.mp4'),
+  promo2: media('videos/promo-2-web.mp4'),
+  axelsen: media('videos/an-sai-long-web.mp4'),
+  leeZijia: media('videos/li-zi-jia-web.mp4'),
 }
 
 const IMG = {
-  banner: media('media/imges/hero-banner.webp'),
-  gear1: media('media/imges/gear-1.jpg'),
-  gear2: media('media/imges/gear-2.jpg'),
-  product1: media('media/imges/product-1.jpeg'),
-  product2: media('media/imges/product-2.jpeg'),
-  product3: media('media/imges/product-3.webp'),
+  banner: media('images/hero-banner.webp'),
+  gear1: media('images/gear-1.jpg'),
+  gear2: media('images/gear-2.jpg'),
+  product1: media('images/product-1.jpeg'),
+  product2: media('images/product-2.jpeg'),
+  product3: media('images/product-3.webp'),
 }
 
 const products = [
@@ -30,8 +30,8 @@ const products = [
 const videos = [
   { src: VID.promo1, title: '2026 春季系列宣传片', poster: IMG.banner },
   { src: VID.promo2, title: '实战测试：高弹拍线专项', poster: IMG.gear2 },
-  { src: VID.axelsen, title: '安赛龙高光：身高臂展与控制流', poster: media('media/imges/an-sai-long.jpg') },
-  { src: VID.leeZijia, title: '李梓嘉高光：暴力进攻美学', poster: media('media/imges/li-zi-jia.jpg') },
+  { src: VID.axelsen, title: '安赛龙高光：身高臂展与控制流', poster: media('images/an-sai-long.jpg') },
+  { src: VID.leeZijia, title: '李梓嘉高光：暴力进攻美学', poster: media('images/li-zi-jia.jpg') },
 ]
 
 const rankings = [

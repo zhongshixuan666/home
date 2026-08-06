@@ -16,7 +16,7 @@
    # 编辑 .env.production 填入密钥、域名
    ```
 
-2. 媒体素材已包含在仓库的 `frontend/public/media/` 中，Docker 构建时会自动复制到容器 `media/` 目录，不需要在服务器上重新上传桌面素材：
+2. 媒体素材已包含在仓库的 `frontend/public/images/` 与 `frontend/public/videos/` 中，Docker 构建时会自动复制到容器 `media/` 目录，不需要在服务器上重新上传桌面素材：
 
    ```powershell
    # 本地如需调试桌面原始素材，可运行：
@@ -61,8 +61,9 @@ docker compose exec web python manage.py migrate
 
 GitHub Pages 只能托管静态文件，无法运行 Django。前端已支持子路径部署：
 
-- 站点资源（图片/视频）已复制到 `frontend/public/media/`，随构建发布
-- 前端构建为多页面 HTML：`index.html`、`news.html`、`players.html`、`matches.html`、`contact.html`、`gear.html`
+- 站点资源（图片/视频）已复制到 `frontend/public/images/` 与 `frontend/public/videos/`，随构建发布
+- 前端构建为多页面 HTML，并整理为 `pages/`、`css/`、`js/`、`images/`、`videos/` 目录
+- 页面文件：`pages/index.html`、`pages/news.html`、`pages/players.html`、`pages/matches.html`、`pages/contact.html`、`pages/gear.html`
 - 媒体路径自动适配部署前缀（开发环境 `/`，Pages 为 `/home/`）
 
 推送 `main` 分支后，[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 会自动构建前端并发布到 GitHub Pages。

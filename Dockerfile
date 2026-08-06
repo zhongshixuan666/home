@@ -20,7 +20,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 COPY --from=frontend /app/frontend/dist ./frontend/dist
-COPY frontend/public/media/ ./media/
+COPY frontend/public/images/ ./media/images/
+COPY frontend/public/videos/ ./media/videos/
 
 RUN python manage.py collectstatic --noinput
 

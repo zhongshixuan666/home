@@ -13,7 +13,7 @@ class ContentApiTests(TestCase):
                 'category': '赛事',
                 'date': '2026-08-17',
                 'excerpt': '石宇奇领衔国羽出战。',
-                'image': '/home/media/imges/hero-main.webp',
+                'image': '/home/images/hero-main.webp',
             }),
             content_type='application/json',
         )
