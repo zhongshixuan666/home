@@ -13,6 +13,7 @@ const projectTypes = ['投稿合作', '媒体采访', '商务合作', '品牌赞
 const submitting = ref(false)
 const submitState = ref(null) // 'ok' | 'error'
 const phoneError = ref('')
+const serverError = ref('')
 
 const PHONE_RE = /^1[3-9]\d{9}$/
 
@@ -24,6 +25,7 @@ async function submit() {
   }
   submitting.value = true
   submitState.value = null
+  serverError.value = ''
   try {
     const res = await fetch('/api/contact/', {
       method: 'POST',
@@ -36,9 +38,15 @@ async function submit() {
       }),
     })
     const data = await res.json()
-    submitState.value = res.ok && data.ok ? 'ok' : 'error'
+    if (res.ok && data.ok) {
+      submitState.value = 'ok'
+    } else {
+      submitState.value = 'error'
+      serverError.value = data.error || '提交失败，请稍后重试'
+    }
   } catch (e) {
     submitState.value = 'error'
+    serverError.value = '无法连接后端服务，请确认 Django 服务已启动'
   }
   submitting.value = false
 }
@@ -50,6 +58,7 @@ function resetForm() {
   form.message = ''
   submitState.value = null
   phoneError.value = ''
+  serverError.value = ''
 }
 
 const steps = [
@@ -159,7 +168,7 @@ const faqs = [
                   {{ submitting ? '提交中…' : '提交表单' }}
                 </button>
                 <p v-if="submitState === 'error'" class="form-error">
-                  提交失败，请检查网络或稍后重试；也可直接发送邮件至 editorial@yujie.com。
+                  {{ serverError || '提交失败，请检查网络或稍后重试；也可直接发送邮件至 editorial@yujie.com。' }}
                 </p>
               </form>
             </template>
