@@ -1,5 +1,11 @@
 客户本地运行说明
 
+在线网站地址：https://zhongshixuan666.github.io/home/
+本地项目路径：B:\Users\轩\Documents\sport_website
+
+如果只想双击 HTML 查看页面：
+请打开“网站静态版”文件夹，直接双击 index.html 或其它页面即可。
+
 注意：不要直接双击 frontend 下的 HTML 文件，否则页面会是空白。
 请先运行 启动网站.bat，再通过 http://127.0.0.1:8000/ 访问。
 

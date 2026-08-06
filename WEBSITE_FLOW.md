@@ -2,6 +2,8 @@
 
 ## 当前状态
 
+- 本地项目路径：`B:\Users\轩\Documents\sport_website`
+- 线上静态预览：`https://zhongshixuan666.github.io/home/`
 - 前端：Vue 3 + Vite 多页面 HTML，已完成
 - 后端：Django + SQLite + 内容 API，已完成
 - 线上：GitHub Pages 静态版已上线
@@ -84,6 +86,12 @@ npm run dev
 - 在线地址：`https://zhongshixuan666.github.io/home/`
 - 适用：静态页面预览、图片视频展示
 - 不适用：联系表单、后台管理、数据库 API
+
+### 方式三：客户静态版
+
+- 目录：`C:\Users\轩\Desktop\36钟世轩\网站静态版`
+- 直接双击 `index.html` 即可查看完整页面，不需要运行服务
+- 联系表单、后台管理和 API 仍需要在线服务或本地 Django
 
 ### 方式二：完整线上部署
 
