@@ -137,6 +137,32 @@ SIMPLEUI_CONFIG = {
                 },
             ],
         },
+        {
+            'name': '内容数据',
+            'icon': 'fas fa-database',
+            'models': [
+                {
+                    'name': '新闻资讯',
+                    'icon': 'fas fa-newspaper',
+                    'url': '/admin/core/newsarticle/',
+                },
+                {
+                    'name': '球员档案',
+                    'icon': 'fas fa-user',
+                    'url': '/admin/core/playerprofile/',
+                },
+                {
+                    'name': '比赛赛程',
+                    'icon': 'fas fa-calendar-alt',
+                    'url': '/admin/core/matchschedule/',
+                },
+                {
+                    'name': '装备产品',
+                    'icon': 'fas fa-shoe-prints',
+                    'url': '/admin/core/product/',
+                },
+            ],
+        },
     ],
 }
 

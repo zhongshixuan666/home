@@ -16,3 +16,97 @@ class Contract(models.Model):
 
     def __str__(self):
         return f'{self.name} · {self.project_type}'
+
+
+class NewsArticle(models.Model):
+    title = models.CharField('标题', max_length=200)
+    category = models.CharField('分类', max_length=50, blank=True, default='资讯')
+    date = models.CharField('日期', max_length=50, blank=True)
+    excerpt = models.TextField('摘要', blank=True)
+    image = models.CharField('图片', max_length=500, blank=True)
+    is_published = models.BooleanField('是否发布', default=True)
+    created_at = models.DateTimeField('创建时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '新闻资讯'
+        verbose_name_plural = '新闻资讯'
+        ordering = ['-created_at']
+        db_table = 'news_article'
+
+    def __str__(self):
+        return self.title
+
+
+class PlayerProfile(models.Model):
+    name = models.CharField('姓名', max_length=100)
+    en_name = models.CharField('英文名', max_length=100, blank=True)
+    country = models.CharField('协会', max_length=100, blank=True)
+    birth = models.CharField('出生日期', max_length=50, blank=True)
+    height = models.CharField('身高', max_length=50, blank=True)
+    status = models.CharField('当前状态', max_length=100, blank=True)
+    style = models.CharField('技术特点', max_length=300, blank=True)
+    bio = models.TextField('档案介绍', blank=True)
+    image = models.CharField('图片', max_length=500, blank=True)
+    video = models.CharField('视频', max_length=500, blank=True)
+    is_published = models.BooleanField('是否发布', default=True)
+    created_at = models.DateTimeField('创建时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '球员档案'
+        verbose_name_plural = '球员档案'
+        ordering = ['-created_at']
+        db_table = 'player_profile'
+
+    def __str__(self):
+        return self.name
+
+
+class MatchSchedule(models.Model):
+    MATCH_TYPES = (
+        ('upcoming', '赛程预告'),
+        ('result', '近期赛果'),
+        ('champion', '冠军榜'),
+    )
+    match_type = models.CharField('数据类型', max_length=20, choices=MATCH_TYPES, default='upcoming')
+    date = models.CharField('日期', max_length=50, blank=True)
+    time = models.CharField('时间', max_length=50, blank=True)
+    event = models.CharField('赛事', max_length=200)
+    stage = models.CharField('阶段', max_length=200, blank=True)
+    venue = models.CharField('地点', max_length=200, blank=True)
+    watch = models.CharField('看点', max_length=300, blank=True)
+    player_a = models.CharField('对阵 A', max_length=100, blank=True)
+    player_b = models.CharField('对阵 B', max_length=100, blank=True)
+    score = models.CharField('比分', max_length=100, blank=True)
+    result = models.CharField('结果', max_length=200, blank=True)
+    champion = models.CharField('冠军', max_length=200, blank=True)
+    is_published = models.BooleanField('是否发布', default=True)
+    created_at = models.DateTimeField('创建时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '比赛赛程'
+        verbose_name_plural = '比赛赛程'
+        ordering = ['-created_at']
+        db_table = 'match_schedule'
+
+    def __str__(self):
+        return self.event
+
+
+class Product(models.Model):
+    name = models.CharField('名称', max_length=200)
+    desc = models.TextField('说明', blank=True)
+    image = models.CharField('图片', max_length=500, blank=True)
+    tag = models.CharField('分类', max_length=50, blank=True)
+    rank = models.CharField('排名', max_length=50, blank=True)
+    score = models.CharField('评分', max_length=50, blank=True)
+    is_published = models.BooleanField('是否发布', default=True)
+    created_at = models.DateTimeField('创建时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '装备产品'
+        verbose_name_plural = '装备产品'
+        ordering = ['-created_at']
+        db_table = 'product'
+
+    def __str__(self):
+        return self.name
