@@ -12,6 +12,8 @@ contact.html
 gear.html
 login.html
 register.html
+login-success.html
+register-success.html
 
 线上完整网站：
 https://zhongshixuan666.github.io/home/
