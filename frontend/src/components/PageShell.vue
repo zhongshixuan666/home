@@ -14,7 +14,6 @@ const navs = [
   { name: '比赛', href: media('pages/matches.html') },
   { name: '联系我们', href: media('pages/contact.html') },
   { name: '装备', href: media('pages/gear.html') },
-  { name: '登录', href: media('pages/login.html') },
 ]
 
 const currentFile = (window.location.pathname.split('/').filter(Boolean).pop() || 'index.html').toLowerCase()
@@ -43,6 +42,10 @@ function isActive(href) {
             {{ item.name }}
           </a>
         </nav>
+        <div class="auth-actions">
+          <a :href="media('pages/login.html')" class="nav-auth">登录</a>
+          <a :href="media('pages/register.html')" class="nav-auth nav-auth-solid">注册</a>
+        </div>
       </div>
     </header>
 
@@ -132,6 +135,29 @@ function isActive(href) {
   color: var(--gold);
 }
 
+.auth-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-auth {
+  padding: 9px 18px;
+  border: 1px solid var(--gold);
+  color: var(--paper);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+.nav-auth:hover {
+  background: var(--gold);
+}
+
+.nav-auth-solid {
+  background: var(--gold);
+  color: var(--paper);
+}
+
 .footer {
   border-top: 1px solid var(--line);
   background: var(--bg-soft);
@@ -190,6 +216,9 @@ function isActive(href) {
   }
   .nav {
     gap: 22px;
+  }
+  .auth-actions {
+    justify-content: center;
   }
 }
 </style>

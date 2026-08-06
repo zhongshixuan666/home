@@ -119,6 +119,8 @@ export default defineConfig({
         gear: fileURLToPath(new URL('./gear.html', import.meta.url)),
         login: fileURLToPath(new URL('./login.html', import.meta.url)),
         register: fileURLToPath(new URL('./register.html', import.meta.url)),
+        login_success: fileURLToPath(new URL('./login-success.html', import.meta.url)),
+        register_success: fileURLToPath(new URL('./register-success.html', import.meta.url)),
       },
     },
   },

@@ -59,7 +59,7 @@ async function submit() {
     const data = await res.json()
     if (res.ok && data.ok) {
       message.value = data.message
-      window.location.href = media('pages/index.html')
+      window.location.href = media('pages/register-success.html')
       return
     }
     error.value = data.error || '注册失败，请稍后重试'
@@ -74,11 +74,11 @@ async function submit() {
 <template>
   <section class="auth-section">
     <div class="container auth-grid">
-      <div class="auth-copy">
-        <p class="eyebrow">Create Account</p>
-        <h1>注册羽界</h1>
-        <p>使用手机号或邮箱完成验证，用户名、手机号、邮箱会用于账号匹配和登录识别。</p>
-        <a :href="media('pages/login.html')" class="btn">已有账号，去登录</a>
+      <div class="auth-visual">
+        <img :src="media('images/hero-banner.webp')" alt="羽界赛场" />
+        <div class="visual-mark">
+          <img :src="media('logo.svg')" alt="羽界" />
+        </div>
       </div>
 
       <div class="auth-panel">
@@ -137,23 +137,40 @@ async function submit() {
 
 .auth-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 96px;
   align-items: center;
 }
 
-.auth-copy h1 {
-  font-family: var(--serif);
-  font-size: 56px;
-  color: var(--paper);
-  letter-spacing: 0.12em;
+.auth-visual {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
 }
 
-.auth-copy p:not(.eyebrow) {
-  max-width: 480px;
-  margin: 24px 0 36px;
-  color: var(--muted);
-  font-size: 15px;
+.auth-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visual-mark {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+}
+
+.visual-mark img {
+  position: static;
+  width: auto;
+  height: 34px;
 }
 
 .auth-panel {
@@ -253,6 +270,9 @@ async function submit() {
   .auth-grid {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+  .auth-visual {
+    min-height: 340px;
   }
   .code-row {
     grid-template-columns: 1fr;
