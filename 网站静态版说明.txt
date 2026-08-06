@@ -10,6 +10,8 @@ players.html
 matches.html
 contact.html
 gear.html
+login.html
+register.html
 
 线上完整网站：
 https://zhongshixuan666.github.io/home/
@@ -17,3 +19,4 @@ https://zhongshixuan666.github.io/home/
 注意：
 静态版只适合展示内容。
 联系表单、后台管理、数据库 API 需要在线上服务或本地 Django 中运行。
+登录/注册页面在静态版中只展示界面，实际验证和登录需要在线服务。
