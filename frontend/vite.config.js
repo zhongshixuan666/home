@@ -117,6 +117,8 @@ export default defineConfig({
         matches: fileURLToPath(new URL('./matches.html', import.meta.url)),
         contact: fileURLToPath(new URL('./contact.html', import.meta.url)),
         gear: fileURLToPath(new URL('./gear.html', import.meta.url)),
+        login: fileURLToPath(new URL('./login.html', import.meta.url)),
+        register: fileURLToPath(new URL('./register.html', import.meta.url)),
       },
     },
   },

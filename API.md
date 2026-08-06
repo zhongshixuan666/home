@@ -12,6 +12,55 @@
 - 新增成功返回 `201`，字段校验失败返回 `400`，记录不存在返回 `404`。
 - 未发布字段 `is_published` 接受 `true/false/1/0/yes/no/on/off`。
 
+## 登录注册
+
+发送验证码：
+
+`POST /api/auth/send-code/`
+
+```json
+{
+  "channel": "phone",
+  "account": "13800138000",
+  "purpose": "register"
+}
+```
+
+`channel` 可选：`phone`、`email`。开发模式下响应会附带 `dev_code`。
+
+注册：
+
+`POST /api/auth/register/`
+
+```json
+{
+  "username": "shiyuqi",
+  "password": "test123456",
+  "phone": "13800138000",
+  "email": "shi@yujie.com",
+  "channel": "phone",
+  "code": "123456"
+}
+```
+
+登录：
+
+`POST /api/auth/login/`
+
+```json
+{
+  "account": "13800138000",
+  "password": "test123456"
+}
+```
+
+`account` 支持用户名、手机号或邮箱。其他接口：
+
+```text
+GET  /api/auth/me/
+POST /api/auth/logout/
+```
+
 ## 新闻
 
 `POST /api/news/`

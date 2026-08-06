@@ -3,6 +3,8 @@ import json
 from django.test import TestCase
 from django.urls import reverse
 
+from .models import VerificationCode
+
 
 class ContentApiTests(TestCase):
     def test_news_create_and_list(self):
@@ -63,3 +65,70 @@ class ContentApiTests(TestCase):
             content_type='application/json',
         )
         self.assertEqual(product_response.status_code, 201)
+
+
+class AuthApiTests(TestCase):
+    def send_code(self, channel, account):
+        return self.client.post(
+            reverse('auth_send_code'),
+            data=json.dumps({'channel': channel, 'account': account, 'purpose': 'register'}),
+            content_type='application/json',
+        )
+
+    def register(self, username, phone, email, channel, code):
+        return self.client.post(
+            reverse('auth_register'),
+            data=json.dumps({
+                'username': username,
+                'password': 'test123456',
+                'phone': phone,
+                'email': email,
+                'channel': channel,
+                'code': code,
+            }),
+            content_type='application/json',
+        )
+
+    def test_register_and_login_with_phone(self):
+        send = self.send_code('phone', '13800138000')
+        self.assertEqual(send.status_code, 200)
+        code = VerificationCode.objects.get(account='13800138000').code
+
+        register = self.register('shiyuqi', '13800138000', 'shi@yujie.com', 'phone', code)
+        self.assertEqual(register.status_code, 201)
+
+        self.client.post(reverse('auth_logout'))
+        login = self.client.post(
+            reverse('auth_login'),
+            data=json.dumps({'account': '13800138000', 'password': 'test123456'}),
+            content_type='application/json',
+        )
+        self.assertEqual(login.status_code, 200)
+        self.assertEqual(login.json()['user']['phone_verified'], True)
+
+    def test_register_and_login_with_email(self):
+        send = self.send_code('email', 'player@yujie.com')
+        code = VerificationCode.objects.get(account='player@yujie.com').code
+
+        register = self.register('chenyufei', '13900139000', 'player@yujie.com', 'email', code)
+        self.assertEqual(register.status_code, 201)
+
+        self.client.post(reverse('auth_logout'))
+        login = self.client.post(
+            reverse('auth_login'),
+            data=json.dumps({'account': 'player@yujie.com', 'password': 'test123456'}),
+            content_type='application/json',
+        )
+        self.assertEqual(login.status_code, 200)
+        self.assertEqual(login.json()['user']['email_verified'], True)
+
+    def test_duplicate_phone_is_rejected(self):
+        send = self.send_code('phone', '13700137000')
+        code = VerificationCode.objects.get(account='13700137000').code
+        self.register('firstuser', '13700137000', 'first@yujie.com', 'phone', code)
+
+        send_again = self.send_code('phone', '13700137000')
+        code_again = VerificationCode.objects.filter(account='13700137000').order_by('-created_at').first().code
+        duplicate = self.register('seconduser', '13700137000', 'second@yujie.com', 'phone', code_again)
+        self.assertEqual(duplicate.status_code, 400)
+        self.assertIn('手机号已被注册', duplicate.json()['error'])

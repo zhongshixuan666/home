@@ -17,4 +17,9 @@ urlpatterns = [
     path('api/products/', views.ProductApiView.as_view(), name='products_api'),
     path('api/products/<int:item_id>/', views.ProductApiView.as_view(), name='products_api_detail'),
     path('api/products/<int:item_id>', views.ProductApiView.as_view(), name='products_api_detail_no_slash'),
+    path('api/auth/send-code/', views.send_verification_code_api, name='auth_send_code'),
+    path('api/auth/register/', views.register_api, name='auth_register'),
+    path('api/auth/login/', views.login_api, name='auth_login'),
+    path('api/auth/me/', views.auth_me_api, name='auth_me'),
+    path('api/auth/logout/', views.logout_api, name='auth_logout'),
 ]

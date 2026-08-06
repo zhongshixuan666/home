@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Contract(models.Model):
@@ -110,3 +111,43 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MemberProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    phone = models.CharField('手机号', max_length=20, unique=True)
+    phone_verified = models.BooleanField('手机已验证', default=False)
+    email_verified = models.BooleanField('邮箱已验证', default=False)
+    created_at = models.DateTimeField('注册时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '会员档案'
+        verbose_name_plural = '会员档案'
+        ordering = ['-created_at']
+        db_table = 'member_profile'
+
+    def __str__(self):
+        return f'{self.user.username} · {self.phone}'
+
+
+class VerificationCode(models.Model):
+    CHANNELS = (
+        ('phone', '手机'),
+        ('email', '邮箱'),
+    )
+    channel = models.CharField('发送渠道', max_length=10, choices=CHANNELS)
+    account = models.CharField('手机号或邮箱', max_length=120)
+    code = models.CharField('验证码', max_length=10)
+    purpose = models.CharField('用途', max_length=20, default='register')
+    expires_at = models.DateTimeField('过期时间')
+    verified = models.BooleanField('已验证', default=False)
+    created_at = models.DateTimeField('创建时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '验证码'
+        verbose_name_plural = '验证码'
+        ordering = ['-created_at']
+        db_table = 'verification_code'
+
+    def __str__(self):
+        return f'{self.channel} · {self.account}'

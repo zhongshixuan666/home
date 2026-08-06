@@ -14,6 +14,7 @@ const navs = [
   { name: '比赛', href: media('pages/matches.html') },
   { name: '联系我们', href: media('pages/contact.html') },
   { name: '装备', href: media('pages/gear.html') },
+  { name: '登录', href: media('pages/login.html') },
 ]
 
 const currentFile = (window.location.pathname.split('/').filter(Boolean).pop() || 'index.html').toLowerCase()
