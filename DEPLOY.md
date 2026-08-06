@@ -16,9 +16,10 @@
    # 编辑 .env.production 填入密钥、域名
    ```
 
-2. 准备媒体素材（把桌面视频/图片复制到项目 media 目录）：
+2. 媒体素材已包含在仓库的 `frontend/public/media/` 中，Docker 构建时会自动复制到容器 `media/` 目录，不需要在服务器上重新上传桌面素材：
 
    ```powershell
+   # 本地如需调试桌面原始素材，可运行：
    .\scripts\prepare_media.ps1
    ```
 
