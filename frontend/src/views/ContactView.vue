@@ -16,6 +16,7 @@ const phoneError = ref('')
 const serverError = ref('')
 
 const PHONE_RE = /^1[3-9]\d{9}$/
+const isStaticPreview = import.meta.env.BASE_URL !== '/'
 
 async function submit() {
   phoneError.value = ''
@@ -46,7 +47,9 @@ async function submit() {
     }
   } catch (e) {
     submitState.value = 'error'
-    serverError.value = '无法连接后端服务，请确认 Django 服务已启动'
+    serverError.value = isStaticPreview
+      ? '当前为 GitHub Pages 静态预览，无法连接 Django 后端；请使用本地完整版或部署 Django 后端。'
+      : '无法连接后端服务，请确认 Django 服务已启动'
   }
   submitting.value = false
 }
