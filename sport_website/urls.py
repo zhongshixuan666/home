@@ -26,11 +26,10 @@ urlpatterns = [
     path('', include('core.urls')),
 ]
 
-# 生产环境由 Django 托管 media 目录（开发环境走 Vite 中间件）
-if not settings.DEBUG:
-    urlpatterns.append(
-        re_path(r'^media/(?P<path>.*)$', media_serve, {'document_root': settings.MEDIA_ROOT})
-    )
+# Django 直接托管 media 目录，打包后的本地版也无需依赖 Vite
+urlpatterns.append(
+    re_path(r'^media/(?P<path>.*)$', media_serve, {'document_root': settings.MEDIA_ROOT})
+)
 
 # Vue 单页应用兜底路由（排除 admin/api/media/static）
 urlpatterns.append(

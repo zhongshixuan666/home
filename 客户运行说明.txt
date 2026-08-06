@@ -1,0 +1,22 @@
+客户本地运行说明
+
+1. 安装 Python 3.12
+   下载地址：https://www.python.org/downloads/
+   安装时勾选 Add Python to PATH。
+
+2. 双击运行 启动网站.bat
+   脚本会自动创建虚拟环境、安装依赖并启动网站。
+
+3. 浏览器访问
+   网站：http://127.0.0.1:8000/
+   后台：http://127.0.0.1:8000/admin/
+
+4. 如果提示端口被占用
+   关闭占用 8000 端口的程序后重新启动。
+
+5. 首次使用后台
+   在项目目录执行：
+   .venv\Scripts\python.exe manage.py createsuperuser
+
+6. 停止网站
+   关闭正在运行的黑色命令行窗口即可。
