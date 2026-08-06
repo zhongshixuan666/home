@@ -1,5 +1,8 @@
 客户本地运行说明
 
+注意：不要直接双击 frontend 下的 HTML 文件，否则页面会是空白。
+请先运行 启动网站.bat，再通过 http://127.0.0.1:8000/ 访问。
+
 1. 安装 Python 3.12
    下载地址：https://www.python.org/downloads/
    安装时勾选 Add Python to PATH。
