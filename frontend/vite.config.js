@@ -84,6 +84,8 @@ function servePageAliases() {
     '/pages/contact.html': '/contact.html',
     '/gear': '/gear.html',
     '/pages/gear.html': '/gear.html',
+    '/community': '/community.html',
+    '/pages/community.html': '/community.html',
     '/pages/index.html': '/index.html',
   }
   const handler = (req, res, next) => {
@@ -117,6 +119,7 @@ export default defineConfig({
         matches: fileURLToPath(new URL('./matches.html', import.meta.url)),
         contact: fileURLToPath(new URL('./contact.html', import.meta.url)),
         gear: fileURLToPath(new URL('./gear.html', import.meta.url)),
+        community: fileURLToPath(new URL('./community.html', import.meta.url)),
         login: fileURLToPath(new URL('./login.html', import.meta.url)),
         register: fileURLToPath(new URL('./register.html', import.meta.url)),
         login_success: fileURLToPath(new URL('./login-success.html', import.meta.url)),

@@ -144,6 +144,30 @@ POST /api/auth/logout/
 
 必填字段：`name`。
 
+
+## 社区投稿
+
+`POST /api/community/`
+
+```json
+{
+  "title": "聊聊这周的比赛",
+  "content": "我觉得国羽男单的防守质量明显提升了。",
+  "author": "羽球少年",
+  "category": "赛事讨论"
+}
+```
+
+`category` 可选值：`球迷投稿`、`赛事讨论`、`装备交流`、`训练心得`、`其他`。
+
+必填字段：`title`、`content`、`author`。
+
+热搜榜：
+
+`GET /api/community/hot/`
+
+返回按 `hot_score`、`views`、`likes` 排序的前 10 条内容。
+
 ## 后台管理
 
 `/admin/` 登录后可在「内容数据」菜单下管理：
@@ -152,3 +176,4 @@ POST /api/auth/logout/
 - 球员档案：`/admin/core/playerprofile/`
 - 比赛赛程：`/admin/core/matchschedule/`
 - 装备产品：`/admin/core/product/`
+- 社区投稿：`/admin/core/communitypost/`

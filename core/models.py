@@ -151,3 +151,31 @@ class VerificationCode(models.Model):
 
     def __str__(self):
         return f'{self.channel} · {self.account}'
+
+
+class CommunityPost(models.Model):
+    CATEGORIES = (
+        ('球迷投稿', '球迷投稿'),
+        ('赛事讨论', '赛事讨论'),
+        ('装备交流', '装备交流'),
+        ('训练心得', '训练心得'),
+        ('其他', '其他'),
+    )
+    title = models.CharField('标题', max_length=120)
+    content = models.TextField('内容')
+    author = models.CharField('作者', max_length=50)
+    category = models.CharField('分类', max_length=50, choices=CATEGORIES, default='球迷投稿')
+    views = models.PositiveIntegerField('浏览数', default=0)
+    likes = models.PositiveIntegerField('点赞数', default=0)
+    hot_score = models.PositiveIntegerField('热度值', default=0)
+    is_published = models.BooleanField('是否发布', default=True)
+    created_at = models.DateTimeField('发布时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '社区投稿'
+        verbose_name_plural = '社区投稿'
+        ordering = ['-created_at']
+        db_table = 'community_post'
+
+    def __str__(self):
+        return self.title

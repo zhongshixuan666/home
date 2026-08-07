@@ -12,6 +12,7 @@ const navs = [
   { name: '资讯', href: media('pages/news.html') },
   { name: '球员', href: media('pages/players.html') },
   { name: '比赛', href: media('pages/matches.html') },
+  { name: '社区', href: media('pages/community.html') },
   { name: '联系我们', href: media('pages/contact.html') },
   { name: '装备', href: media('pages/gear.html') },
 ]

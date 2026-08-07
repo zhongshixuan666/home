@@ -6,6 +6,7 @@ const routes = [
   { path: '/players', name: 'players', component: () => import('../views/PlayersView.vue'), meta: { title: '球员' } },
   { path: '/matches', name: 'matches', component: () => import('../views/MatchesView.vue'), meta: { title: '比赛' } },
   { path: '/contact', name: 'contact', component: () => import('../views/ContactView.vue'), meta: { title: '联系我们' } },
+  { path: '/community', name: 'community', component: () => import('../views/CommunityView.vue'), meta: { title: '球迷社区' } },
   { path: '/gear', name: 'gear', component: () => import('../views/GearView.vue'), meta: { title: '装备' } },
 ]
 

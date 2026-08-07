@@ -22,4 +22,8 @@ urlpatterns = [
     path('api/auth/login/', views.login_api, name='auth_login'),
     path('api/auth/me/', views.auth_me_api, name='auth_me'),
     path('api/auth/logout/', views.logout_api, name='auth_logout'),
+    path('api/community/', views.CommunityApiView.as_view(), name='community_api'),
+    path('api/community/hot/', views.community_hot_api, name='community_hot_api'),
+    path('api/community/<int:item_id>/', views.CommunityApiView.as_view(), name='community_api_detail'),
+    path('api/community/<int:item_id>', views.CommunityApiView.as_view(), name='community_api_detail_no_slash'),
 ]

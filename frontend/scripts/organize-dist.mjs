@@ -38,6 +38,15 @@ for (const file of fs.readdirSync(pagesDir)) {
   html = html.replace(/href="([^"]*)assets\/([^"]+\.css)"/g, 'href="$1css/$2"')
   html = html.replace(/href="([^"]*)assets\/([^"]+\.js)"/g, 'href="$1js/$2"')
   html = html.replace(/src="([^"]*)assets\/([^"]+\.js)"/g, 'src="$1js/$2"')
+  html = html.replace(/href="\/css\//g, 'href="css/')
+  html = html.replace(/href="\/js\//g, 'href="js/')
+  html = html.replace(/src="\/js\//g, 'src="js/')
+  html = html.replace(/src="\/images\//g, 'src="images/')
+  html = html.replace(/src="\/videos\//g, 'src="videos/')
+  html = html.replace(/poster="\/images\//g, 'poster="images/')
+  html = html.replace(/href="\/logo\.svg"/g, 'href="logo.svg"')
+  html = html.replace(/src="\/logo\.svg"/g, 'src="logo.svg"')
+  html = html.replace(/\s*crossorigin(?:="[^"]*")?/g, '')
   fs.writeFileSync(filePath, html)
 }
 

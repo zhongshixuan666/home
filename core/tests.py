@@ -132,3 +132,44 @@ class AuthApiTests(TestCase):
         duplicate = self.register('seconduser', '13700137000', 'second@yujie.com', 'phone', code_again)
         self.assertEqual(duplicate.status_code, 400)
         self.assertIn('手机号已被注册', duplicate.json()['error'])
+
+
+class CommunityApiTests(TestCase):
+    def test_community_create_and_list(self):
+        response = self.client.post(
+            reverse('community_api'),
+            data=json.dumps({
+                'title': '聊聊这周的比赛',
+                'content': '我觉得国羽男单的防守质量明显提升了。',
+                'author': '羽球少年',
+                'category': '赛事讨论',
+            }),
+            content_type='application/json',
+        )
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.json()['ok'], True)
+
+        list_response = self.client.get(reverse('community_api'))
+        self.assertEqual(list_response.status_code, 200)
+        self.assertEqual(list_response.json()['count'], 1)
+        self.assertEqual(list_response.json()['results'][0]['title'], '聊聊这周的比赛')
+
+    def test_community_hot_ranking(self):
+        for index, title in enumerate(['热门话题', '普通话题']):
+            self.client.post(
+                reverse('community_api'),
+                data=json.dumps({
+                    'title': title,
+                    'content': '内容',
+                    'author': '测试用户',
+                    'category': '球迷投稿',
+                    'views': 200 if index == 0 else 10,
+                    'likes': 20 if index == 0 else 1,
+                    'hot_score': 500 if index == 0 else 30,
+                }),
+                content_type='application/json',
+            )
+
+        hot = self.client.get(reverse('community_hot_api'))
+        self.assertEqual(hot.status_code, 200)
+        self.assertEqual(hot.json()['results'][0]['title'], '热门话题')

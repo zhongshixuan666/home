@@ -21,6 +21,7 @@ from .models import (
     PlayerProfile,
     Product,
     VerificationCode,
+    CommunityPost,
 )
 
 
@@ -271,6 +272,8 @@ def home_api(request):
             'players': '/api/players/',
             'matches': '/api/matches/',
             'products': '/api/products/',
+            'community': '/api/community/',
+            'community_hot': '/api/community/hot/',
         },
     })
 
@@ -423,3 +426,46 @@ def logout_api(request):
         return JsonResponse({'error': '仅支持 POST 请求'}, status=405)
     auth_logout(request)
     return JsonResponse({'ok': True, 'message': '已退出登录'})
+
+
+class CommunityApiView(ContentApiView):
+    model = CommunityPost
+    label = '社区投稿'
+    fields = (
+        'title',
+        'content',
+        'author',
+        'category',
+        'views',
+        'likes',
+        'hot_score',
+        'is_published',
+        'created_at',
+    )
+    required = ('title', 'content', 'author')
+    editable = (
+        'title',
+        'content',
+        'author',
+        'category',
+        'views',
+        'likes',
+        'hot_score',
+        'is_published',
+    )
+    boolean_fields = ('is_published',)
+
+    def get_queryset(self):
+        return self.model.objects.filter(is_published=True)
+
+
+def community_hot_api(request):
+    posts = (
+        CommunityPost.objects.filter(is_published=True)
+        .order_by('-hot_score', '-views', '-likes', '-created_at')[:10]
+    )
+    results = [
+        serialize(post, ('title', 'category', 'views', 'likes', 'hot_score', 'created_at'))
+        for post in posts
+    ]
+    return JsonResponse({'ok': True, 'count': len(results), 'results': results})

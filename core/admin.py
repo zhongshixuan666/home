@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Contract, MatchSchedule, MemberProfile, NewsArticle, PlayerProfile, Product, VerificationCode
+from .models import CommunityPost, Contract, MatchSchedule, MemberProfile, NewsArticle, PlayerProfile, Product, VerificationCode
 
 
 @admin.register(Contract)
@@ -50,3 +50,10 @@ class VerificationCodeAdmin(admin.ModelAdmin):
     list_display = ('channel', 'account', 'code', 'purpose', 'expires_at', 'verified')
     list_filter = ('channel', 'purpose', 'verified')
     search_fields = ('account', 'code')
+
+
+@admin.register(CommunityPost)
+class CommunityPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'category', 'views', 'likes', 'hot_score', 'is_published', 'created_at')
+    list_filter = ('category', 'is_published')
+    search_fields = ('title', 'content', 'author')
