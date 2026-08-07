@@ -126,7 +126,7 @@ const { loading } = useFakeLoad(650)
             <div class="person-info">
               <p class="person-meta">丹麦 · 男单</p>
               <h3>安赛龙</h3>
-              <p class="person-note">两届奥运金牌得主，男单统治力标杆。</p>
+              <p class="person-note">两届奥运金牌得主，2026年4月因反复腰伤退役。</p>
             </div>
           </a>
           <a :href="media('pages/players.html')" class="person-card micro-card">

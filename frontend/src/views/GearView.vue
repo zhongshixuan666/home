@@ -30,7 +30,7 @@ const products = [
 const videos = [
   { src: VID.promo1, title: '2026 春季系列宣传片', poster: IMG.banner },
   { src: VID.promo2, title: '实战测试：高弹拍线专项', poster: IMG.gear2 },
-  { src: VID.axelsen, title: '安赛龙高光：身高臂展与控制流', poster: media('images/an-sai-long.jpg') },
+  { src: VID.axelsen, title: '安赛龙生涯高光：身高臂展与控制流', poster: media('images/an-sai-long.jpg') },
   { src: VID.leeZijia, title: '李梓嘉高光：暴力进攻美学', poster: media('images/li-zi-jia.jpg') },
 ]
 

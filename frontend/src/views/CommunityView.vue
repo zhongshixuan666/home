@@ -41,7 +41,7 @@ const fallbackHot = [
   { id: 1, title: '全英公开赛签表分析', hot_score: 982 },
   { id: 2, title: '石宇奇最新状态', hot_score: 874 },
   { id: 3, title: '业余球拍选购指南', hot_score: 761 },
-  { id: 4, title: '安赛龙采访', hot_score: 688 },
+  { id: 4, title: '安赛龙退役回顾', hot_score: 688 },
   { id: 5, title: '李诗沣冠军', hot_score: 596 },
   { id: 6, title: '防守训练方法', hot_score: 511 },
 ]
